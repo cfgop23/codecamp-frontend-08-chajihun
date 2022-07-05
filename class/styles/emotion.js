@@ -1,10 +1,9 @@
-import styled from '@emotion/styled'
+import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
-    color: red;
-`
+  color: red;
+`;
 
 export const EmailInput = styled.input`
-    width: 300px;
-
-`
+  width: 300px;
+`;

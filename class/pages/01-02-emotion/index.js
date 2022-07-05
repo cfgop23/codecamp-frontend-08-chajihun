@@ -1,14 +1,13 @@
-import { Wrapper, EmailInput } from '../../styles/emotion'
+import { Wrapper, EmailInput } from "../../styles/emotion";
 
 export default function EmotionPage() {
+  // here is javascript.
 
-    // here is javascript.
-
-    return (
-        <Wrapper>
-            Hello
-            <EmailInput type="text"></EmailInput>
-            <img src="/vercel.svg"></img>
-        </Wrapper>
-    )
+  return (
+    <Wrapper>
+      Hello
+      <EmailInput type="text"></EmailInput>
+      <img src="/vercel.svg"></img>
+    </Wrapper>
+  );
 }
