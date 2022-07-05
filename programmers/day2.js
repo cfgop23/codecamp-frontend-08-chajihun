@@ -11,7 +11,17 @@ name = "철수";
 
 //3.
 
-//let fruits = ["사과", "바나나", "파인애플"];
+//const fruits = ["사과", "바나나", "파인애플"];
+
+//const fruits = []
+// fruits.push("사과")
+// fruits.push("바나나")
+// fruits.push("파인애플")
+// 더 많이 쓰임
+
+// fruits[0] = '사과'
+// fruits[1] = '바나나'
+// fruits[2] = '파인애플'
 
 //4.
 
@@ -44,6 +54,8 @@ const arr = [number.slice(0, 3), number.slice(3, 7), number.slice(7, 11)];
 const student = {};
 
 student.name = "철수";
+
+student["name"] = "영희";
 
 //9.
 
