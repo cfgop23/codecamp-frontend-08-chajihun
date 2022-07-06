@@ -34,6 +34,7 @@ export default function SignupPage() {
     setRandomNum(String(Math.floor(Math.random() * 1000000)).padStart(6, "0"));
   }
 
+  //회원가입
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
@@ -84,11 +85,11 @@ export default function SignupPage() {
       setPasswordError("");
       setPasswordCorrect(true);
     }
-  }
 
-  if (emailCorrect === true && passwordCorrect === true) {
-    alert("회원가입을 축하합니다.");
-    return;
+    if (emailCorrect === true && passwordCorrect === true) {
+      alert("회원가입을 축하합니다.");
+      return;
+    }
   }
 
   const errorColor = {

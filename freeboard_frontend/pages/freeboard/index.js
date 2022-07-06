@@ -3,6 +3,7 @@ import {
   Title,
   Head,
   Container,
+  NameContainer,
   Name,
   Label,
   Star,
@@ -24,7 +25,7 @@ import {
   ButtonWrapper,
   SubmitButton,
   ErrorMessage,
-} from "../../styles/freeboard";
+} from "../../styles/emotion";
 
 import { useState } from "react";
 
@@ -33,51 +34,76 @@ export default function Freeboard() {
   const [password, setPassword] = useState("");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [nameError1, setNameError1] = useState("");
-  const [nameError2, setNameError2] = useState("");
-  const [nameError3, setNameError3] = useState("");
-  const [nameError4, setNameError4] = useState("");
+  const [nameError, setNameError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [titleError, setTitleError] = useState("");
+  const [contentsError, setContentsError] = useState("");
 
   function onChangeName(event) {
     setName(event.target.value);
+    if (event.target.value) {
+      setNameError("");
+    }
   }
 
   function onChangePassword(event) {
     setPassword(event.target.value);
+    if (event.target.value) {
+      setPasswordError("");
+    }
   }
 
   function onChangeTitle(event) {
     setTitle(event.target.value);
+    if (event.target.value) {
+      setTitleError("");
+    }
   }
 
   function onChangeContent(event) {
     setContent(event.target.value);
-  }
-
-  function onClickSignup(event) {
-    console.log(name);
-    console.log(password);
-    console.log(title);
-    console.log(content);
-
-    if (name === "") {
-      setNameError1("필수 입력입니다.");
-    } else if (password === "") {
-      setNameError2("필수 입력입니다.");
-    } else if (title === "") {
-      setNameError3("필수 입력입니다.");
-    } else if (content === "") {
-      setNameError4("필수 입력입니다.");
-    } else {
-      alert("회원가입을 축하드립니다.");
+    if (event.target.value) {
+      setContentsError("");
     }
   }
+
+  // function onClickSignup(event) {
+  //   if (name === "") {
+  //     setNameError("이름을 입력해주세요.");
+  //   } else if (password === "") {
+  //     setPasswordError("비밀번호를 입력해주세요.");
+  //   } else if (title === "") {
+  //     setTitleError("제목을 입력해주세요.");
+  //   } else if (content === "") {
+  //     setContentsError("내용을 입력해주세요.");
+  //   } else {
+  //     alert("회원가입을 축하드립니다.");
+  //   }
+  // }
+
+  const onClickSignup = () => {
+    if (!name) {
+      setNameError("작성자를 입력해주세요.");
+    }
+    if (password === "") {
+      setPasswordError("비밀번호를 입력해주세요.");
+    }
+    if (title === "") {
+      setTitleError("제목을 입력해주세요.");
+    }
+    if (content === "") {
+      setContentsError("내용을 입력해주세요.");
+    }
+    if (name && password && title !== "" && content !== "") {
+      alert("게시물이 등록되었습니다.");
+    }
+  };
 
   return (
     <Wrapper>
       <Title>게시물 등록</Title>
       <Head>
-        <Container>
+        <NameContainer>
           <Name>
             <Label>작성자</Label>
             <Star>*</Star>
@@ -87,17 +113,17 @@ export default function Freeboard() {
             placeholder="이름을 적어주세요."
             onChange={onChangeName}
           ></NameInput>
-          <ErrorMessage>{nameError1}</ErrorMessage>
-        </Container>
-        <Container>
+          <ErrorMessage>{nameError}</ErrorMessage>
+        </NameContainer>
+        <NameContainer>
           <Label>비밀번호</Label>
           <PassInput
             type="text"
             placeholder="비밀번호를 적어주세요."
             onChange={onChangePassword}
           ></PassInput>
-          <ErrorMessage>{nameError2}</ErrorMessage>
-        </Container>
+          <ErrorMessage>{passwordError}</ErrorMessage>
+        </NameContainer>
       </Head>
       <Container>
         <Label>제목</Label>
@@ -106,7 +132,7 @@ export default function Freeboard() {
           placeholder="제목을 작성해주세요."
           onChange={onChangeTitle}
         ></ContentsTitle>
-        <ErrorMessage>{nameError3}</ErrorMessage>
+        <ErrorMessage>{titleError}</ErrorMessage>
       </Container>
       <Container>
         <Label>내용</Label>
@@ -115,7 +141,7 @@ export default function Freeboard() {
           placeholder="내용을 작성해주세요."
           onChange={onChangeContent}
         ></Contents>
-        <ErrorMessage>{nameError4}</ErrorMessage>
+        <ErrorMessage>{contentsError}</ErrorMessage>
       </Container>
       <Container>
         <Label>주소</Label>

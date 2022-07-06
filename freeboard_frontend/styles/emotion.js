@@ -28,6 +28,11 @@ export const Container = styled.div`
   margin-bottom: 20px;
 `;
 
+export const NameContainer = styled.div`
+  height: 120px;
+  margin-bottom: 20px;
+`;
+
 export const Name = styled.div`
   display: flex;
   align-items: center;
@@ -148,4 +153,5 @@ export const SubmitButton = styled.button`
 
 export const ErrorMessage = styled.div`
   color: red;
+  padding-top: 5px;
 `;
