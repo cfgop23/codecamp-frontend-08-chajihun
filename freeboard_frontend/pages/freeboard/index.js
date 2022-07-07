@@ -28,8 +28,20 @@ import {
 } from "../../styles/emotion";
 
 import { useState } from "react";
+import { useMutation, gql } from "@apollo/client";
 
-export default function Freeboard() {
+const CREATE_BOARD = gql`
+  mutation createBoard($createBoardInput: CreateBoardInput!) {
+    createBoard(createBoardInput: $createBoardInput) {
+      _id
+      writer
+      title
+      contents
+    }
+  }
+`;
+
+export default function FreeboardPage() {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [title, setTitle] = useState("");
@@ -39,33 +51,35 @@ export default function Freeboard() {
   const [titleError, setTitleError] = useState("");
   const [contentsError, setContentsError] = useState("");
 
-  function onChangeName(event) {
+  const [createBoard] = useMutation(CREATE_BOARD);
+
+  const onChangeName = (event) => {
     setName(event.target.value);
     if (event.target.value) {
       setNameError("");
     }
-  }
+  };
 
-  function onChangePassword(event) {
+  const onChangePassword = (event) => {
     setPassword(event.target.value);
     if (event.target.value) {
       setPasswordError("");
     }
-  }
+  };
 
-  function onChangeTitle(event) {
+  const onChangeTitle = (event) => {
     setTitle(event.target.value);
     if (event.target.value) {
       setTitleError("");
     }
-  }
+  };
 
-  function onChangeContent(event) {
+  const onChangeContent = (event) => {
     setContent(event.target.value);
     if (event.target.value) {
       setContentsError("");
     }
-  }
+  };
 
   // function onClickSignup(event) {
   //   if (name === "") {
@@ -81,7 +95,7 @@ export default function Freeboard() {
   //   }
   // }
 
-  const onClickSignup = () => {
+  const onClickSignup = async () => {
     if (!name) {
       setNameError("작성자를 입력해주세요.");
     }
@@ -97,6 +111,23 @@ export default function Freeboard() {
     if (name && password && title !== "" && content !== "") {
       alert("게시물이 등록되었습니다.");
     }
+
+    const result = await createBoard({
+      variables: {
+        createBoardInput: {
+          writer: name,
+          password: password,
+          title: title,
+          contents: content,
+        },
+      },
+    });
+    console.log(result);
+    console.log(result.data.createBoard._id);
+    console.log(name);
+    console.log(password);
+    console.log(title);
+    console.log(content);
   };
 
   return (
@@ -116,7 +147,10 @@ export default function Freeboard() {
           <ErrorMessage>{nameError}</ErrorMessage>
         </NameContainer>
         <NameContainer>
-          <Label>비밀번호</Label>
+          <Name>
+            <Label>비밀번호</Label>
+            <Star>*</Star>
+          </Name>
           <PassInput
             type="text"
             placeholder="비밀번호를 적어주세요."
@@ -126,7 +160,10 @@ export default function Freeboard() {
         </NameContainer>
       </Head>
       <Container>
-        <Label>제목</Label>
+        <Name>
+          <Label>제목</Label>
+          <Star>*</Star>
+        </Name>
         <ContentsTitle
           type="text"
           placeholder="제목을 작성해주세요."
@@ -135,7 +172,10 @@ export default function Freeboard() {
         <ErrorMessage>{titleError}</ErrorMessage>
       </Container>
       <Container>
-        <Label>내용</Label>
+        <Name>
+          <Label>내용</Label>
+          <Star>*</Star>
+        </Name>
         <Contents
           type="text"
           placeholder="내용을 작성해주세요."
