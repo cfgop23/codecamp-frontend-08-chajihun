@@ -53,6 +53,56 @@ export default function FreeboardPage() {
 
   const [createBoard] = useMutation(CREATE_BOARD);
 
+  // function onClickSignup(event) {
+  //   if (name === "") {
+  //     setNameError("이름을 입력해주세요.");
+  //   } else if (password === "") {
+  //     setPasswordError("비밀번호를 입력해주세요.");
+  //   } else if (title === "") {
+  //     setTitleError("제목을 입력해주세요.");
+  //   } else if (content === "") {
+  //     setContentsError("내용을 입력해주세요.");
+  //   } else {
+  //     alert("회원가입을 축하드립니다.");
+  //   }
+  // }
+
+  const onClickSignup = async () => {
+    const result = await createBoard({
+      variables: {
+        createBoardInput: {
+          writer: name,
+          password: password,
+          title: title,
+          contents: content,
+        },
+      },
+    });
+
+    if (!name) {
+      setNameError("작성자를 입력해주세요.");
+    }
+    if (password === "") {
+      setPasswordError("비밀번호를 입력해주세요.");
+    }
+    if (title === "") {
+      setTitleError("제목을 입력해주세요.");
+    }
+    if (content === "") {
+      setContentsError("내용을 입력해주세요.");
+    }
+    if (name && password && title !== "" && content !== "") {
+      alert("게시물이 등록되었습니다.");
+    }
+
+    console.log(result);
+    console.log(result.data.createBoard._id);
+    console.log(name);
+    console.log(password);
+    console.log(title);
+    console.log(content);
+  };
+
   const onChangeName = (event) => {
     setName(event.target.value);
     if (event.target.value) {
@@ -79,55 +129,6 @@ export default function FreeboardPage() {
     if (event.target.value) {
       setContentsError("");
     }
-  };
-
-  // function onClickSignup(event) {
-  //   if (name === "") {
-  //     setNameError("이름을 입력해주세요.");
-  //   } else if (password === "") {
-  //     setPasswordError("비밀번호를 입력해주세요.");
-  //   } else if (title === "") {
-  //     setTitleError("제목을 입력해주세요.");
-  //   } else if (content === "") {
-  //     setContentsError("내용을 입력해주세요.");
-  //   } else {
-  //     alert("회원가입을 축하드립니다.");
-  //   }
-  // }
-
-  const onClickSignup = async () => {
-    if (!name) {
-      setNameError("작성자를 입력해주세요.");
-    }
-    if (password === "") {
-      setPasswordError("비밀번호를 입력해주세요.");
-    }
-    if (title === "") {
-      setTitleError("제목을 입력해주세요.");
-    }
-    if (content === "") {
-      setContentsError("내용을 입력해주세요.");
-    }
-    if (name && password && title !== "" && content !== "") {
-      alert("게시물이 등록되었습니다.");
-    }
-
-    const result = await createBoard({
-      variables: {
-        createBoardInput: {
-          writer: name,
-          password: password,
-          title: title,
-          contents: content,
-        },
-      },
-    });
-    console.log(result);
-    console.log(result.data.createBoard._id);
-    console.log(name);
-    console.log(password);
-    console.log(title);
-    console.log(content);
   };
 
   return (
