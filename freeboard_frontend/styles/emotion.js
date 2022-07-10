@@ -53,24 +53,28 @@ export const NameInput = styled.input`
   width: 486px;
   height: 52px;
   border: 1px solid #cacaca;
+  padding-left: 10px;
 `;
 
 export const PassInput = styled.input`
   width: 486px;
   height: 52px;
   border: 1px solid #cacaca;
+  padding-left: 10px;
 `;
 
 export const ContentsTitle = styled.input`
   width: 996px;
   height: 52px;
   border: 1px solid #cacaca;
+  padding-left: 10px;
 `;
 
 export const Contents = styled.textarea`
   width: 996px;
   height: 480px;
   border: 1px solid #cacaca;
+  padding: 15px;
 `;
 
 export const AddCodeWrapper = styled.div`
@@ -81,6 +85,7 @@ export const AddCode = styled.input`
   width: 77px;
   height: 52px;
   border: 1px solid #cacaca;
+  padding-left: 18px;
 `;
 
 export const AddButton = styled.button`

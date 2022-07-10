@@ -29,6 +29,7 @@ import {
 
 import { useState } from "react";
 import { useMutation, gql } from "@apollo/client";
+import { useRouter } from "next/router";
 
 const CREATE_BOARD = gql`
   mutation createBoard($createBoardInput: CreateBoardInput!) {
@@ -37,11 +38,14 @@ const CREATE_BOARD = gql`
       writer
       title
       contents
+      likeCount
+      dislikeCount
     }
   }
 `;
 
 export default function FreeboardPage() {
+  const router = useRouter();
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [title, setTitle] = useState("");
@@ -53,54 +57,42 @@ export default function FreeboardPage() {
 
   const [createBoard] = useMutation(CREATE_BOARD);
 
-  // function onClickSignup(event) {
-  //   if (name === "") {
-  //     setNameError("이름을 입력해주세요.");
-  //   } else if (password === "") {
-  //     setPasswordError("비밀번호를 입력해주세요.");
-  //   } else if (title === "") {
-  //     setTitleError("제목을 입력해주세요.");
-  //   } else if (content === "") {
-  //     setContentsError("내용을 입력해주세요.");
-  //   } else {
-  //     alert("회원가입을 축하드립니다.");
-  //   }
-  // }
-
   const onClickSignup = async () => {
-    const result = await createBoard({
-      variables: {
-        createBoardInput: {
-          writer: name,
-          password: password,
-          title: title,
-          contents: content,
+    try {
+      const result = await createBoard({
+        variables: {
+          createBoardInput: {
+            writer: name,
+            password: password,
+            title: title,
+            contents: content,
+          },
         },
-      },
-    });
+      });
 
-    if (!name) {
-      setNameError("작성자를 입력해주세요.");
-    }
-    if (password === "") {
-      setPasswordError("비밀번호를 입력해주세요.");
-    }
-    if (title === "") {
-      setTitleError("제목을 입력해주세요.");
-    }
-    if (content === "") {
-      setContentsError("내용을 입력해주세요.");
-    }
-    if (name && password && title !== "" && content !== "") {
-      alert("게시물이 등록되었습니다.");
-    }
+      if (!name) {
+        setNameError("작성자를 입력해주세요.");
+      }
+      if (password === "") {
+        setPasswordError("비밀번호를 입력해주세요.");
+      }
+      if (title === "") {
+        setTitleError("제목을 입력해주세요.");
+      }
+      if (content === "") {
+        setContentsError("내용을 입력해주세요.");
+      }
+      if (name && password && title !== "" && content !== "") {
+        alert("게시물이 등록되었습니다.");
+      }
 
-    console.log(result);
-    console.log(result.data.createBoard._id);
-    console.log(name);
-    console.log(password);
-    console.log(title);
-    console.log(content);
+      console.log(result);
+      console.log(result.data.createBoard._id);
+      router.push(`/details/${result.data.createBoard._id}`);
+    } catch (error) {
+      console.log(error.message);
+      alert("error");
+    }
   };
 
   const onChangeName = (event) => {
@@ -193,10 +185,6 @@ export default function FreeboardPage() {
       </Container>
       <Address></Address>
       <Address></Address>
-      <Container>
-        <Label>유튜브</Label>
-        <Youtube type="text" placeholder="링크를 복사해주세요."></Youtube>
-      </Container>
       <ImgWrapper>
         <Label>사진첨부</Label>
         <UploadButton>+</UploadButton>

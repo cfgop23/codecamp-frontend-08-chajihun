@@ -20,6 +20,7 @@ export default function RoutedPage() {
   });
 
   console.log(data);
+  console.log(router);
 
   return (
     <>

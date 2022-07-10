@@ -9,7 +9,7 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <ApolloProvider client={client}>
-      <Component {...pageProps} />;
+      <Component {...pageProps} />
       {/* Component : 우리가 접속한 페이지 컴포넌트 */}
     </ApolloProvider>
   );
