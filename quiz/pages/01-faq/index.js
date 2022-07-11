@@ -52,7 +52,7 @@ export default function FaQPage() {
         </Search>
         <Profile>
           <My>마이</My>
-          <MyImg src="/profile-image.png"></MyImg>
+          <MyImg src="/images/profile-image.png"></MyImg>
           <Name>임정아</Name>
           <Arrow> ></Arrow>
         </Profile>
@@ -123,19 +123,19 @@ export default function FaQPage() {
       <Line></Line>
       <Nav>
         <NavContent>
-          <NavIcon src="/home.png"></NavIcon>
+          <NavIcon src="/images/home.png"></NavIcon>
           <NavText>홈</NavText>
         </NavContent>
         <NavContent>
-          <NavIcon src="/point.png"></NavIcon>
+          <NavIcon src="/images/point.png"></NavIcon>
           <NavText>잇츠로드</NavText>
         </NavContent>
         <NavContent>
-          <NavIcon src="/heart.png"></NavIcon>
+          <NavIcon src="/images/heart.png"></NavIcon>
           <NavText>마이찜</NavText>
         </NavContent>
         <NavContent>
-          <NavIcon src="/my.png"></NavIcon>
+          <NavIcon src="/images/my.png"></NavIcon>
           <NavTextRed>마이</NavTextRed>
         </NavContent>
       </Nav>

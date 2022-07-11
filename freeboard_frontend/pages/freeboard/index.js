@@ -58,6 +58,22 @@ export default function FreeboardPage() {
   const [createBoard] = useMutation(CREATE_BOARD);
 
   const onClickSignup = async () => {
+    if (!name) {
+      setNameError("작성자를 입력해주세요.");
+    }
+    if (password === "") {
+      setPasswordError("비밀번호를 입력해주세요.");
+    }
+    if (title === "") {
+      setTitleError("제목을 입력해주세요.");
+    }
+    if (content === "") {
+      setContentsError("내용을 입력해주세요.");
+    }
+    if (name && password && title !== "" && content !== "") {
+      alert("게시물이 등록되었습니다.");
+    }
+
     try {
       const result = await createBoard({
         variables: {
@@ -69,22 +85,6 @@ export default function FreeboardPage() {
           },
         },
       });
-
-      if (!name) {
-        setNameError("작성자를 입력해주세요.");
-      }
-      if (password === "") {
-        setPasswordError("비밀번호를 입력해주세요.");
-      }
-      if (title === "") {
-        setTitleError("제목을 입력해주세요.");
-      }
-      if (content === "") {
-        setContentsError("내용을 입력해주세요.");
-      }
-      if (name && password && title !== "" && content !== "") {
-        alert("게시물이 등록되었습니다.");
-      }
 
       console.log(result);
       console.log(result.data.createBoard._id);

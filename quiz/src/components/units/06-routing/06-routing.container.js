@@ -1,18 +1,11 @@
-import { useMutation, gql } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { useMutation } from "@apollo/client";
+import Quiz09UI from "./06-routing.presenter";
+import { CREATE_BOARD } from "./06-routing.queries";
+import RoutingPageUI from "./06-routing.presenter";
 
-const CREATE_BOARD = gql`
-  mutation createBoard($writer: String, $title: String, $contents: String) {
-    createBoard(writer: $writer, title: $title, contents: $contents) {
-      _id
-      number
-      message
-    }
-  }
-`;
-
-export default function GraphqlMutationPage() {
+export default function RoutingPage() {
   const router = useRouter();
 
   const [writer, setWriter] = useState("");
@@ -31,9 +24,7 @@ export default function GraphqlMutationPage() {
         },
       });
 
-      router.push(
-        `/05-08-dynamic-routed-board-query/${result.data.createBoard.number}`
-      );
+      router.push(`/06-routed/${result.data.createBoard.number}`);
       console.log(result.data.createBoard.number);
       console.log(result.data.createBoard.message);
     } catch (error) {
@@ -54,25 +45,18 @@ export default function GraphqlMutationPage() {
     setContents(event.target.value);
     if (event.target.value) {
       setAbled(false);
+    } else {
+      setAbled(true);
     }
   };
-  // const onChangeAble = (event) => {
-  //   if (setWriter === true && setTitle === true && setContents === true) {
-  //     setAbled("");
-  //   }
-  // };
 
   return (
-    <>
-      작성자: <input type="text" onChange={onChangeWriter} />
-      <br />
-      제목: <input type="text" onChange={onChangeTitle} />
-      <br />
-      내용: <input type="text" onChange={onChangeContents} />
-      <br />
-      <button disabled={abled} onClick={onClickGraphqlApi}>
-        게시글 이동하기
-      </button>
-    </>
+    <RoutingPageUI
+      onClickGraphqlApi={onClickGraphqlApi}
+      onChangeWriter={onChangeWriter}
+      onChangeTitle={onChangeTitle}
+      onChangeContents={onChangeContents}
+      abled={abled}
+    />
   );
 }
