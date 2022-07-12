@@ -1,7 +1,6 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
-import Quiz09UI from "./06-routing.presenter";
 import { CREATE_BOARD } from "./06-routing.queries";
 import RoutingPageUI from "./06-routing.presenter";
 
@@ -11,7 +10,11 @@ export default function RoutingPage() {
   const [writer, setWriter] = useState("");
   const [title, setTitle] = useState("");
   const [contents, setContents] = useState("");
-  const [abled, setAbled] = useState(true);
+
+  const [isWriter, setIsWriter] = useState(false);
+  const [isTitle, setIsTitle] = useState(false);
+  const [isContents, setIsContents] = useState(false);
+  const [isButton, setIsButton] = useState(true);
   const [createBoard] = useMutation(CREATE_BOARD);
 
   const onClickGraphqlApi = async () => {
@@ -35,20 +38,39 @@ export default function RoutingPage() {
 
   const onChangeWriter = (event) => {
     setWriter(event.target.value);
+    if (event.target.value) {
+      setIsWriter(true);
+    } else {
+      setIsWriter(false);
+    }
   };
 
   const onChangeTitle = (event) => {
     setTitle(event.target.value);
+    if (event.target.value) {
+      setIsTitle(true);
+    } else {
+      setIsTitle(false);
+    }
   };
 
   const onChangeContents = (event) => {
     setContents(event.target.value);
     if (event.target.value) {
-      setAbled(false);
+      setIsContents(true);
     } else {
-      setAbled(true);
+      setIsContents(false);
     }
   };
+
+  const onButton = () => {
+    if (isWriter && isTitle && isContents) {
+      setIsButton(false);
+    } else setIsButton(true);
+    return isButton;
+  };
+
+  setTimeout(onButton);
 
   return (
     <RoutingPageUI
@@ -56,7 +78,7 @@ export default function RoutingPage() {
       onChangeWriter={onChangeWriter}
       onChangeTitle={onChangeTitle}
       onChangeContents={onChangeContents}
-      abled={abled}
+      isButton={isButton}
     />
   );
 }

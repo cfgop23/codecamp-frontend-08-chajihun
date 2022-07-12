@@ -9,11 +9,7 @@ export default function RoutingPageUI(props) {
       <br />
       내용: <input type="text" onChange={props.onChangeContents} />
       <br />
-      <button
-        disabled={props.abled}
-        onChange={props.onChangeAble}
-        onClick={props.onClickGraphqlApi}
-      >
+      <button disabled={props.isButton} onClick={props.onClickGraphqlApi}>
         게시글 이동하기
       </button>
     </>
