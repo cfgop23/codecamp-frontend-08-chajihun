@@ -1,20 +1,3 @@
-import { useRouter } from "next/router";
-import { useQuery, gql } from "@apollo/client";
-
-const FETCH_BOARD = gql`
-  query fetchBoard($boardId: ID!) {
-    fetchBoard(boardId: $boardId) {
-      _id
-      writer
-      title
-      contents
-      likeCount
-      dislikeCount
-      createdAt
-    }
-  }
-`;
-
 import {
   Wrapper,
   Header,
@@ -37,24 +20,14 @@ import {
   Dislikes,
   DislikesIcon,
   DislikesCount,
-} from "../../../styles/details/emotion";
+} from "../detail/BoardDetail.styles";
 
 import { FiLink2 } from "react-icons/fi";
 import { GoLocation } from "react-icons/go";
 import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
 import { BsPersonCircle } from "react-icons/bs";
 
-export default function DetailsPage() {
-  const router = useRouter();
-  const { data } = useQuery(FETCH_BOARD, {
-    variables: {
-      boardId: router.query.detailsId,
-    },
-  });
-
-  console.log(data);
-  console.log(router);
-
+export default function BoardDetailUI(props) {
   return (
     <Wrapper>
       <Header>
@@ -62,8 +35,8 @@ export default function DetailsPage() {
           <BsPersonCircle />
         </ProfileImg>
         <ProfileDetail>
-          <ProfileName>{data?.fetchBoard.writer}</ProfileName>
-          <Dates>{data && data.fetchBoard.createdAt.substr(0, 10)}</Dates>
+          <ProfileName>{props.data?.fetchBoard?.writer}</ProfileName>
+          <Dates>{props.data?.fetchBoard?.createdAt.substr(0, 10)}</Dates>
         </ProfileDetail>
         <HeadButton>
           <Link>
@@ -76,9 +49,9 @@ export default function DetailsPage() {
       </Header>
       <Horizon></Horizon>
       <Body>
-        <Title>{data?.fetchBoard.title}</Title>
+        <Title>{props.data?.fetchBoard?.title}</Title>
         <ContentsWrapper>
-          <Contents>{data?.fetchBoard.contents}</Contents>
+          <Contents>{props.data?.fetchBoard?.contents}</Contents>
         </ContentsWrapper>
       </Body>
       <Footer>
@@ -86,13 +59,13 @@ export default function DetailsPage() {
           <LikesIcon>
             <AiOutlineLike />
           </LikesIcon>
-          <LikesCount>{data?.fetchBoard.likeCount}</LikesCount>
+          <LikesCount>{props.data?.fetchBoard?.likeCount}</LikesCount>
         </Likes>
         <Dislikes>
           <DislikesIcon>
             <AiOutlineDislike />
           </DislikesIcon>
-          <DislikesCount>{data?.fetchBoard.dislikeCount}</DislikesCount>
+          <DislikesCount>{props.data?.fetchBoard?.dislikeCount}</DislikesCount>
         </Dislikes>
       </Footer>
     </Wrapper>
