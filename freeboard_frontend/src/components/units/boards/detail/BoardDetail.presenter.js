@@ -49,9 +49,14 @@ export default function BoardDetailUI(props) {
         </s.Dislikes>
       </s.Footer>
       <s.FooterButton>
-        <s.Button /*onClick={}*/>목록으로</s.Button>
+        <s.Button onClick={props.onClickMoveToBoards}>목록으로</s.Button>
         <s.Button onClick={props.onClickUpdate}>수정하기</s.Button>
-        <s.Button>삭제하기</s.Button>
+        <s.Button
+          id={props.data?.fetchBoard?._id}
+          onClick={props.onClickDelete}
+        >
+          삭제하기
+        </s.Button>
       </s.FooterButton>
     </s.Wrapper>
   );

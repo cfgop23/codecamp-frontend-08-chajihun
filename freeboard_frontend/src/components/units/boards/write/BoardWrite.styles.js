@@ -149,11 +149,17 @@ export const ButtonWrapper = styled.div`
 export const SubmitButton = styled.button`
   width: 179px;
   height: 52px;
-  background: #ffd600;
-  border: none;
+  background: White;
+  border: 1px solid gray;
   font-weight: 500;
   font-size: 18px;
   margin-top: 80px;
+  cursor: pointer;
+
+  :hover {
+    background-color: skyblue;
+    color: white;
+  }
 `;
 
 export const ErrorMessage = styled.div`

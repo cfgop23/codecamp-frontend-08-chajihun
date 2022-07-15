@@ -33,7 +33,7 @@ export const Dates = styled.div`
 `;
 export const HeadButton = styled.div`
   display: flex;
-  color: #ffd600;
+  color: skyblue;
 `;
 export const Link = styled.div`
   padding-right: 20px;
@@ -75,7 +75,7 @@ export const Footer = styled.div`
 `;
 export const Likes = styled.div`
   width: 30px;
-  color: #ffd600;
+  color: skyblue;
   display:flex
   flex-direction: column;
   align-items: center;
@@ -119,9 +119,15 @@ export const FooterButton = styled.div`
 export const Button = styled.button`
   width: 179px;
   height: 52px;
-  background: #ffd600;
-  border: none;
+  background: white;
+  border: 1px solid gray;
   font-weight: 500;
   font-size: 18px;
   margin: 0 40px 0 40px;
+  cursor: pointer;
+
+  :hover {
+    background-color: skyblue;
+    color: white;
+  }
 `;

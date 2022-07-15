@@ -1,10 +1,12 @@
 import { useRouter } from "next/router";
-import { useQuery } from "@apollo/client";
-import { FETCH_BOARD } from "./BoardDetail.queries";
+import { useMutation, useQuery } from "@apollo/client";
+import { FETCH_BOARD, FETCH_BOARDS, DELETE_BOARD } from "./BoardDetail.queries";
 import BoardDetailUI from "./BoardDetail.presenter";
 
 export default function BoardDetail() {
   const router = useRouter();
+
+  const [deleteBoard] = useMutation(DELETE_BOARD);
 
   const { data } = useQuery(FETCH_BOARD, {
     variables: {
@@ -13,11 +15,28 @@ export default function BoardDetail() {
   });
 
   console.log(data);
-  console.log(router);
 
   const onClickUpdate = () => {
     router.push(`/freeboard/${router.query.detailsId}/edit`);
   };
+  const onClickMoveToBoards = () => {
+    router.push("/freeboard");
+  };
 
-  return <BoardDetailUI data={data} onClickUpdate={onClickUpdate} />;
+  const onClickDelete = (event) => {
+    deleteBoard({
+      variables: { boardId: event.target.id },
+      refetchQueries: [{ query: FETCH_BOARDS }],
+    });
+    router.push(`/freeboard/`);
+  };
+
+  return (
+    <BoardDetailUI
+      data={data}
+      onClickUpdate={onClickUpdate}
+      onClickMoveToBoards={onClickMoveToBoards}
+      onClickDelete={onClickDelete}
+    />
+  );
 }
