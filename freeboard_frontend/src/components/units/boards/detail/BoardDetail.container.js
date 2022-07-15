@@ -15,5 +15,9 @@ export default function BoardDetail() {
   console.log(data);
   console.log(router);
 
-  return <BoardDetailUI data={data} />;
+  const onClickUpdate = () => {
+    router.push(`/freeboard/${router.query.detailsId}/edit`);
+  };
+
+  return <BoardDetailUI data={data} onClickUpdate={onClickUpdate} />;
 }

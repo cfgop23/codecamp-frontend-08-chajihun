@@ -1,5 +1,5 @@
 import BoardWrite from "../../../src/components/units/boards/write/BoardWrite.container";
 
 export default function FreeboardPage() {
-  return <BoardWrite />;
+  return <BoardWrite isEdit={false} />;
 }

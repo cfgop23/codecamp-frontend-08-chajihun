@@ -2,7 +2,7 @@ import * as s from "./BoardWrite.styles";
 export default function BoardWriteUI(props) {
   return (
     <s.Wrapper>
-      <s.Title>게시물 등록</s.Title>
+      <s.Title>게시물{props.isEdit ? " 수정" : " 등록"}</s.Title>
       <s.Head>
         <s.NameContainer>
           <s.Name>
@@ -22,7 +22,7 @@ export default function BoardWriteUI(props) {
             <s.Star>*</s.Star>
           </s.Name>
           <s.PassInput
-            type="text"
+            type="password"
             placeholder="비밀번호를 적어주세요."
             onChange={props.onChangePassword}
           ></s.PassInput>
@@ -78,7 +78,11 @@ export default function BoardWriteUI(props) {
         </s.RadioWrapper>
       </s.OptionWrapper>
       <s.ButtonWrapper>
-        <s.SubmitButton onClick={props.onClickSignup}>등록하기</s.SubmitButton>
+        <s.SubmitButton
+          onClick={props.isEdit ? props.onClickUpdate : props.onClickSubmit}
+        >
+          {props.isEdit ? "수정하기" : "등록하기"}
+        </s.SubmitButton>
       </s.ButtonWrapper>
     </s.Wrapper>
   );

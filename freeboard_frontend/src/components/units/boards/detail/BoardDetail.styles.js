@@ -74,10 +74,11 @@ export const Footer = styled.div`
   margin-top: 100px;
 `;
 export const Likes = styled.div`
+  width: 30px;
   color: #ffd600;
   display:flex
   flex-direction: column;
-
+  align-items: center;
 `;
 
 export const LikesIcon = styled.div`
@@ -89,6 +90,7 @@ export const LikesCount = styled.div`
   padding-left: 7px;
 `;
 export const Dislikes = styled.div`
+  width: 30px;
   color: #828282;
   display:flex
   flex-direction: column;
@@ -104,4 +106,22 @@ export const DislikesCount = styled.div`
   font-size: 20px;
   margin-top: 5px;
   padding-left: 7px;
+`;
+
+export const FooterButton = styled.div`
+  width: 100%;
+  height: 52px;
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+`;
+
+export const Button = styled.button`
+  width: 179px;
+  height: 52px;
+  background: #ffd600;
+  border: none;
+  font-weight: 500;
+  font-size: 18px;
+  margin: 0 40px 0 40px;
 `;
