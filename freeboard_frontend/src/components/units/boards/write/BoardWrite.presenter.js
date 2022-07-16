@@ -1,4 +1,5 @@
 import * as s from "./BoardWrite.styles";
+
 export default function BoardWriteUI(props) {
   return (
     <s.Wrapper>
@@ -13,6 +14,8 @@ export default function BoardWriteUI(props) {
             type="text"
             placeholder="이름을 적어주세요."
             onChange={props.onChangeName}
+            defaultValue={props.data?.fetchBoard.writer}
+            readOnly={!!props.data?.fetchBoard.writer}
           ></s.NameInput>
           <s.ErrorMessage>{props.nameError}</s.ErrorMessage>
         </s.NameContainer>
@@ -38,6 +41,7 @@ export default function BoardWriteUI(props) {
           type="text"
           placeholder="제목을 작성해주세요."
           onChange={props.onChangeTitle}
+          defaultValue={props.data?.fetchBoard.title}
         ></s.ContentsTitle>
         <s.ErrorMessage>{props.titleError}</s.ErrorMessage>
       </s.Container>
@@ -50,6 +54,7 @@ export default function BoardWriteUI(props) {
           type="text"
           placeholder="내용을 작성해주세요."
           onChange={props.onChangeContent}
+          defaultValue={props.data?.fetchBoard.contents}
         ></s.Contents>
         <s.ErrorMessage>{props.contentsError}</s.ErrorMessage>
       </s.Container>
@@ -80,6 +85,7 @@ export default function BoardWriteUI(props) {
       <s.ButtonWrapper>
         <s.SubmitButton
           onClick={props.isEdit ? props.onClickUpdate : props.onClickSubmit}
+          isActive={props.isEdit ? true : props.isActive}
         >
           {props.isEdit ? "수정하기" : "등록하기"}
         </s.SubmitButton>

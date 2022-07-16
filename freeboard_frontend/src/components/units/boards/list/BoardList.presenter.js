@@ -4,7 +4,7 @@ import * as s from "./BoardList.styles";
 export default function BoardListUI(props) {
   return (
     <s.Wrapper>
-      <s.Title>우리들 게시판</s.Title>
+      <s.Title>코드캠프 게시판</s.Title>
       <s.Table>
         <s.RowHead>
           <s.ColumnHeaderId>ID</s.ColumnHeaderId>
