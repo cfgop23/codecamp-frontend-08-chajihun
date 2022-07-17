@@ -10,7 +10,7 @@ import BoardWriteUI from "./BoardWrite.presenter";
 //export default 값일 때 중괄호 생략
 //default는 무조건 하나
 import { CREATE_BOARD, UPDATE_BOARD } from "./BoardWrite.queries";
-import { IBoardWriteProps, IMyVariables } from "./boardWrite.types";
+import { IBoardWriteProps, IMyVariables } from "./BoardWrite.types";
 
 export default function BoardWrite(props: IBoardWriteProps) {
   const router = useRouter();

@@ -2,6 +2,7 @@ import BoardListUI from "./BoardList.presenter";
 import { useRouter } from "next/router";
 import { useQuery } from "@apollo/client";
 import { FETCH_BOARDS } from "./BoardList.queries";
+import React, { MouseEvent } from "react";
 
 export default function BoardList() {
   const router = useRouter();
@@ -11,8 +12,10 @@ export default function BoardList() {
     router.push("/freeboard/write");
   };
 
-  const onClickMoveToBoardDetail = (event) => {
-    router.push(`/freeboard/${event.target.id}`);
+  const onClickMoveToBoardDetail = (
+    event: React.MouseEvent<HTMLDivElement>
+  ) => {
+    router.push(`/freeboard/${(event.target as HTMLDivElement).id}`);
   };
 
   console.log(data);

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { IRedButtonProps } from "./boardWrite.types";
+import { IRedButtonProps } from "./BoardWrite.types";
 
 export const RedInput = styled.input`
   border-color: red;

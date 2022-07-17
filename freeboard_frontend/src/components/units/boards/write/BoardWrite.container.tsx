@@ -1,10 +1,17 @@
-import { useState } from "react";
+import React, { useState, ChangeEvent } from "react";
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import { CREATE_BOARD, UPDATE_BOARD } from "./BoardWrite.queries";
 import BoardWriteUI from "./BoardWrite.presenter";
+import { IBoardWriteProps, IUpdateBoardInput } from "./BoardWrite.types";
+import {
+  IMutation,
+  IMutationCreateBoardArgs,
+  IMutationUpdateBoardArgs,
+} from "../../../../commons/types/generated/types";
+import { getErrorMessage } from "../../../../commons/libraries/utils";
 
-export default function BoardWrite(props) {
+export default function BoardWrite(props: IBoardWriteProps) {
   const router = useRouter();
 
   const [name, setName] = useState("");
@@ -19,10 +26,16 @@ export default function BoardWrite(props) {
 
   const [isActive, setIsActive] = useState(false);
 
-  const [createBoard] = useMutation(CREATE_BOARD);
-  const [updateBoard] = useMutation(UPDATE_BOARD);
+  const [createBoard] = useMutation<
+    Pick<IMutation, "createBoard">,
+    IMutationCreateBoardArgs
+  >(CREATE_BOARD);
+  const [updateBoard] = useMutation<
+    Pick<IMutation, "updateBoard">,
+    IMutationUpdateBoardArgs
+  >(UPDATE_BOARD);
 
-  const onChangeName = (event) => {
+  const onChangeName = (event: ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value);
     if (event.target.value) {
       setNameError("");
@@ -35,7 +48,7 @@ export default function BoardWrite(props) {
     }
   };
 
-  const onChangePassword = (event) => {
+  const onChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
     if (event.target.value) {
       setPasswordError("");
@@ -48,7 +61,7 @@ export default function BoardWrite(props) {
     }
   };
 
-  const onChangeTitle = (event) => {
+  const onChangeTitle = (event: ChangeEvent<HTMLInputElement>) => {
     setTitle(event.target.value);
     if (event.target.value) {
       setTitleError("");
@@ -61,7 +74,7 @@ export default function BoardWrite(props) {
     }
   };
 
-  const onChangeContent = (event) => {
+  const onChangeContent = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setContent(event.target.value);
     if (event.target.value) {
       setContentsError("");
@@ -102,17 +115,16 @@ export default function BoardWrite(props) {
         });
 
         console.log(result);
-        console.log(result.data.createBoard._id);
-        router.push(`/freeboard/${result.data.createBoard._id}`);
+        console.log(result.data?.createBoard._id);
+        router.push(`/freeboard/${result.data?.createBoard._id}`);
       } catch (error) {
-        console.log(error.message);
-        alert(error.message);
+        getErrorMessage(error);
       }
     }
   };
 
-  const onClickUpdate = async (event) => {
-    const updateBoardInput = {};
+  const onClickUpdate = async () => {
+    const updateBoardInput: IUpdateBoardInput = {};
     if (title) updateBoardInput.title = title;
     if (content) updateBoardInput.contents = content;
 
@@ -132,17 +144,16 @@ export default function BoardWrite(props) {
           variables: {
             updateBoardInput: updateBoardInput,
             password: password,
-            boardId: router.query.detailsId,
+            boardId: String(router.query.detailsId),
           },
         });
 
         console.log(result);
-        console.log(result.data.updateBoard._id);
-        router.push(`/freeboard/${result.data.updateBoard._id}`);
+        console.log(result.data?.updateBoard._id);
+        router.push(`/freeboard/${result.data?.updateBoard._id}`);
         alert(`게시물이 수정되었습니다.`);
       } catch (error) {
-        console.log(error.message);
-        alert(error.message);
+        getErrorMessage(error);
       }
     }
   };

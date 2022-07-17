@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { IIsActiveProps } from "./BoardWrite.types";
 
 export const Wrapper = styled.div`
   width: 1200px;
@@ -156,8 +157,9 @@ export const SubmitButton = styled.button`
   margin-top: 80px;
   cursor: pointer;
 
-  background-color: ${(props) => (props.isActive ? "skyblue" : "white")};
-  color: ${(props) => (props.isActive ? "white" : "black")};
+  background-color: ${(props: IIsActiveProps) =>
+    props.isActive ? "skyblue" : "white"};
+  color: ${(props: IIsActiveProps) => (props.isActive ? "white" : "black")};
 `;
 
 export const ErrorMessage = styled.div`

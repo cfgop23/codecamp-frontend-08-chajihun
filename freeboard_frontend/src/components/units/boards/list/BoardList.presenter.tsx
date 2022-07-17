@@ -1,7 +1,8 @@
 import { getDate } from "../../../../commons/libraries/utils";
 import * as s from "./BoardList.styles";
+import { IBoardListUIPros } from "./BoardList.types";
 
-export default function BoardListUI(props) {
+export default function BoardListUI(props: IBoardListUIPros) {
   return (
     <s.Wrapper>
       <s.Title>코드캠프 게시판</s.Title>

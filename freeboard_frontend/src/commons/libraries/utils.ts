@@ -1,4 +1,4 @@
-export const getDate = (value) => {
+export const getDate = (value: Date) => {
   const date = new Date(value);
   const yyyy = date.getFullYear();
   const MM = String(date.getMonth() + 1).padStart(2, "0");
@@ -6,4 +6,12 @@ export const getDate = (value) => {
   const hh = String(date.getHours()).padStart(2, "0");
   const mm = String(date.getMinutes()).padStart(2, "0");
   return `${yyyy}-${MM}-${dd} ${hh}:${mm}`;
+};
+
+export const getErrorMessage = (error: unknown) => {
+  let message;
+  if (error instanceof Error) return (message = error.message);
+  else message = String(error);
+
+  alert(message);
 };

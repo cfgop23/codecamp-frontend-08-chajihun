@@ -17,12 +17,16 @@ export const CommentsCreate = styled.div`
   display: flex;
   flex-direction: column;
 `;
-export const CommentsNameInput = styled.input`
-  width: 300px;
+
+export const CommentsId = styled.div`
+  display: flex;
+`;
+export const CommentsInput = styled.input`
+  width: 200px;
   height: 50px;
   border: 1px solid #cacaca;
   border-bottom: none;
-  padding-left: 20px;
+  padding-left: 30px;
   font-size: 16px;
 `;
 
@@ -81,4 +85,20 @@ export const CommentsDate = styled.div`
   font-size: 15px;
   color: #bdbdbd;
   padding-top: 20px;
+`;
+
+export const CommentsDelete = styled.button`
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border: none;
+  color: #cacaca;
+  font-size: 20px;
+  padding-left: 790px;
+
+  cursor: pointer;
+
+  :hover {
+    color: skyblue;
+  }
 `;

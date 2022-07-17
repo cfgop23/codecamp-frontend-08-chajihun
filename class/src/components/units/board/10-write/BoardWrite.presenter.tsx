@@ -1,6 +1,6 @@
 import { ChangeEvent } from "react";
 import * as S from "./BoardWrite.styles";
-import { IBoardWriteUIProps } from "./boardWrite.types";
+import { IBoardWriteUIProps } from "./BoardWrite.types";
 
 // import qqq, {RedInput} from "./BoardWrite.styles"
 
