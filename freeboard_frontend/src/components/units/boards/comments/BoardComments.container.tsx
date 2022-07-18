@@ -1,10 +1,13 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import React, { ChangeEvent, useState } from "react";
+import { MouseEvent, ChangeEvent, useState } from "react";
 import { getErrorMessage } from "../../../../commons/libraries/utils";
 import {
   IMutation,
   IMutationCreateBoardCommentArgs,
+  IMutationDeleteBoardCommentArgs,
+  IQuery,
+  IQueryFetchBoardCommentsArgs,
 } from "../../../../commons/types/generated/types";
 import BoardCommentsUI from "./BoardComments.presenter";
 
@@ -16,7 +19,7 @@ import {
 
 export default function BoardComments() {
   const router = useRouter();
-  const [writer, setWriter] = useState("");
+  const [writer, setWriter] = useState(""); //타입 명시할 때: useState<type>()
   const [password, setPassword] = useState("");
   const [contents, setContents] = useState("");
 
@@ -24,10 +27,16 @@ export default function BoardComments() {
     Pick<IMutation, "createBoardComment">,
     IMutationCreateBoardCommentArgs
   >(CREATE_BOARD_COMMENT);
-  const [deleteBoardComment] = useMutation(DELETE_BOARD_COMMENT);
-  const { data } = useQuery(FETCH_BOARD_COMMENTS, {
+  const [deleteBoardComment] = useMutation<
+    Pick<IMutation, "deleteBoardComment">,
+    IMutationDeleteBoardCommentArgs
+  >(DELETE_BOARD_COMMENT);
+  const { data } = useQuery<
+    Pick<IQuery, "fetchBoardComments">,
+    IQueryFetchBoardCommentsArgs
+  >(FETCH_BOARD_COMMENTS, {
     variables: {
-      boardId: router.query.detailsId,
+      boardId: String(router.query.detailsId),
     },
   });
 
@@ -46,6 +55,8 @@ export default function BoardComments() {
   };
 
   const onClickComments = async () => {
+    if (typeof router.query.detailsId !== "string") return;
+
     if (!writer || !contents) {
       return;
     }
@@ -53,8 +64,8 @@ export default function BoardComments() {
     try {
       const result = await createBoardComment({
         variables: {
-          createBoardCommentInput: { writer, password, contents, rating: 1 },
-          boardId: String(router.query.detailsId),
+          createBoardCommentInput: { writer, password, contents, rating: 0 }, //rating: 별표
+          boardId: router.query.detailsId,
         },
         refetchQueries: [
           {
@@ -67,25 +78,31 @@ export default function BoardComments() {
       console.log(result);
     } catch (error) {
       getErrorMessage(error);
+      // if(error instanceof Error) alert(error.message)
     }
   };
 
-  const onClickCommentsDelete = (
-    event: React.MouseEvent<HTMLButtonElement>
+  const onClickCommentsDelete = async (
+    event: MouseEvent<HTMLButtonElement>
   ) => {
-    prompt("비밀번호를 입력해주세요.");
-    deleteBoardComment({
-      variables: {
-        password,
-        boardCommentId: (event.target as HTMLButtonElement).id,
-      },
-      refetchQueries: [
-        {
-          query: FETCH_BOARD_COMMENTS,
-          variables: { boardId: router.query.detailsId },
+    // if(!(event.target instanceof HTMLButtonElement)) return
+    const myPassword = prompt("비밀번호를 입력해주세요.");
+    try {
+      await deleteBoardComment({
+        variables: {
+          password: myPassword,
+          boardCommentId: (event.target as HTMLButtonElement).id,
         },
-      ],
-    });
+        refetchQueries: [
+          {
+            query: FETCH_BOARD_COMMENTS,
+            variables: { boardId: router.query.detailsId },
+          },
+        ],
+      });
+    } catch (error) {
+      getErrorMessage(error);
+    }
   };
 
   return (

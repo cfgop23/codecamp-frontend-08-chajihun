@@ -10,7 +10,7 @@ export const getDate = (value: Date) => {
 
 export const getErrorMessage = (error: unknown) => {
   let message;
-  if (error instanceof Error) return (message = error.message);
+  if (error instanceof Error) message = error.message;
   else message = String(error);
 
   alert(message);

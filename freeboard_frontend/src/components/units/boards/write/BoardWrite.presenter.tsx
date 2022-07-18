@@ -16,7 +16,7 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
             placeholder="이름을 적어주세요."
             onChange={props.onChangeName}
             defaultValue={props.data?.fetchBoard.writer || ""}
-            readOnly={!!props.data?.fetchBoard.writer}
+            readOnly={!!props.data?.fetchBoard.writer} // !! 안붙이면 삼항연산자로 타입처리 해야함
           ></s.NameInput>
           <s.ErrorMessage>{props.nameError}</s.ErrorMessage>
         </s.NameContainer>

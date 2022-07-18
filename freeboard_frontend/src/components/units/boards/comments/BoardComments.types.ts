@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react";
+import { MouseEvent, ChangeEvent } from "react";
 import { IQuery } from "../../../../commons/types/generated/types";
 
 export interface IBoardCommentUIProps {
@@ -6,6 +6,6 @@ export interface IBoardCommentUIProps {
   onChangePassword: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeContents: (event: ChangeEvent<HTMLTextAreaElement>) => void;
   onClickComments: () => void;
-  onClickCommentsDelete: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onClickCommentsDelete: (event: MouseEvent<HTMLButtonElement>) => void;
   data?: Pick<IQuery, "fetchBoardComments">;
 }
