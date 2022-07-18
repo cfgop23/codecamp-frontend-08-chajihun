@@ -5,4 +5,6 @@ export interface IBoardDetailUIProps {
   onClickUpdate: () => void;
   onClickMoveToBoards: () => void;
   onClickDelete: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onClickLike: () => void;
+  onClickDislike: () => void;
 }

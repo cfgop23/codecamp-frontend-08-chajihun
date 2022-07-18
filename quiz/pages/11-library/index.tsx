@@ -1,7 +1,6 @@
 import { Rate, DatePicker } from "antd";
 import type { DatePickerProps } from "antd";
 import styled from "@emotion/styled";
-import "antd/dist/antd.css";
 import React, { useState } from "react";
 import ReactPlayer from "react-player";
 

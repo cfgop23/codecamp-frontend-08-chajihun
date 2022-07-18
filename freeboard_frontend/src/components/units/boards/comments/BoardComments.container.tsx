@@ -15,6 +15,7 @@ import {
   CREATE_BOARD_COMMENT,
   FETCH_BOARD_COMMENTS,
   DELETE_BOARD_COMMENT,
+  UPDATE_BOARD_COMMENT,
 } from "./BoardComments.queries";
 
 export default function BoardComments() {
@@ -22,11 +23,13 @@ export default function BoardComments() {
   const [writer, setWriter] = useState(""); //타입 명시할 때: useState<type>()
   const [password, setPassword] = useState("");
   const [contents, setContents] = useState("");
+  const [value, setValue] = useState<number>(0);
 
   const [createBoardComment] = useMutation<
     Pick<IMutation, "createBoardComment">,
     IMutationCreateBoardCommentArgs
   >(CREATE_BOARD_COMMENT);
+  const [updateBoardComment] = useMutation(UPDATE_BOARD_COMMENT);
   const [deleteBoardComment] = useMutation<
     Pick<IMutation, "deleteBoardComment">,
     IMutationDeleteBoardCommentArgs
@@ -54,6 +57,10 @@ export default function BoardComments() {
     setContents(event.target.value);
   };
 
+  const onChangeRating = (value: number) => {
+    setValue(value);
+  };
+
   const onClickComments = async () => {
     if (typeof router.query.detailsId !== "string") return;
 
@@ -64,7 +71,12 @@ export default function BoardComments() {
     try {
       const result = await createBoardComment({
         variables: {
-          createBoardCommentInput: { writer, password, contents, rating: 0 }, //rating: 별표
+          createBoardCommentInput: {
+            writer,
+            password,
+            contents,
+            rating: value,
+          }, //rating: 별표
           boardId: router.query.detailsId,
         },
         refetchQueries: [
@@ -80,7 +92,32 @@ export default function BoardComments() {
       getErrorMessage(error);
       // if(error instanceof Error) alert(error.message)
     }
+    setWriter("");
+    setPassword("");
+    setContents("");
+    setValue(0);
   };
+
+  // const onClickCommentsUpdate = async (
+  //   event: MouseEvent<HTMLButtonElement>
+  // ) => {
+  //   const myPassword = prompt("비밀번호를 입력해주세요.");
+
+  //   try {
+  //     await updateBoardComment({
+  //       variables: {
+  //         updateBoardCommentInput: {
+  //           contents,
+  //           rating: value,
+  //         },
+  //         password,
+  //         boardCommentId: (event.target as HTMLButtonElement).id,
+  //       },
+  //     });
+  //   } catch (error) {
+  //     getErrorMessage(error);
+  //   }
+  // };
 
   const onClickCommentsDelete = async (
     event: MouseEvent<HTMLButtonElement>
@@ -108,11 +145,17 @@ export default function BoardComments() {
   return (
     <BoardCommentsUI
       onClickComments={onClickComments}
+      // onClickCommentsUpdate={onClickCommentsUpdate}
       onClickCommentsDelete={onClickCommentsDelete}
       onChangeWriter={onChangeWriter}
       onChangePassword={onChangePassword}
       onChangeContents={onChangeContents}
+      onChangeRating={onChangeRating}
       data={data}
+      writer={writer}
+      password={password}
+      contents={contents}
+      value={value}
     />
   );
 }

@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { Rate } from "antd";
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -37,7 +38,7 @@ export const CommentsContentsInput = styled.textarea`
   padding: 20px;
   font-size: 20px;
 `;
-export const CommentsButton = styled.div`
+export const CommentsCreateButton = styled.div`
   width: 80px;
   height: 40px;
   background-color: white;
@@ -73,10 +74,21 @@ export const CommentsProfile = styled.div`
   margin-left: 10px;
   color: #cacaca;
 `;
+
+export const CommentsNameWrapper = styled.div`
+  width: 500px;
+  display: flex;
+`;
+
 export const CommentsName = styled.div`
   font-size: 20px;
   font-weight: 500;
 `;
+
+export const RatingStar = styled(Rate)`
+  margin-left: 30px; ;
+`;
+
 export const CommentsContents = styled.div`
   font-size: 18px;
   padding-top: 10px;
@@ -87,14 +99,27 @@ export const CommentsDate = styled.div`
   padding-top: 20px;
 `;
 
+export const CommentsButton = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: 360px;
+`;
+
+export const CommentsUpdate = styled.img`
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+`;
+
 export const CommentsDelete = styled.button`
   width: 20px;
   height: 20px;
+  line-height: 20px;
   background-color: white;
   border: none;
   color: #cacaca;
   font-size: 20px;
-  padding-left: 790px;
+  margin-left: 20px;
 
   cursor: pointer;
 

@@ -36,13 +36,19 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
       </s.Body>
       <s.Footer>
         <s.Likes>
-          <s.LikesIcon>
+          <s.LikesIcon
+            id={props.data?.fetchBoard?._id}
+            onClick={props.onClickLike}
+          >
             <AiOutlineLike />
           </s.LikesIcon>
           <s.LikesCount>{props.data?.fetchBoard?.likeCount}</s.LikesCount>
         </s.Likes>
         <s.Dislikes>
-          <s.DislikesIcon>
+          <s.DislikesIcon
+            id={props.data?.fetchBoard?._id}
+            onClick={props.onClickDislike}
+          >
             <AiOutlineDislike />
           </s.DislikesIcon>
           <s.DislikesCount>
