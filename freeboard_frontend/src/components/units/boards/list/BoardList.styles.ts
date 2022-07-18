@@ -32,6 +32,10 @@ export const Row = styled.div`
   height: 52px;
   line-height: 52px;
   border-bottom: 1px solid #cacaca;
+  :hover {
+    color: skyblue;
+    background-color: #eff8ff6e;
+  }
 `;
 
 export const ColumnHeaderId = styled.div`
@@ -67,10 +71,6 @@ export const ColumnTitle = styled.div`
   width: 50%;
   margin-left: 10px;
   cursor: pointer;
-
-  :hover {
-    color: skyblue;
-  }
 `;
 
 export const ColumnDate = styled.div`
