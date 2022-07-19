@@ -51,8 +51,8 @@ export default function LibraryIconPage() {
       <PlayerWrapper>
         <ReactPlayer
           url="https://www.youtube.com/watch?v=dyRsYk0LyA8"
-          width={800}
-          height={600}
+          width="800px"
+          height="600px"
           playing={true}
           muted={true}
         ></ReactPlayer>

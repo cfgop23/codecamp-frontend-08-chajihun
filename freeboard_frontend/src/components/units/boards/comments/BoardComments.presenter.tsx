@@ -22,10 +22,7 @@ export default function BoardCommentsUI(props: IBoardCommentUIProps) {
             placeholder="비밀번호"
             onChange={props.onChangePassword}
           ></s.CommentsInput>
-          <s.RatingStar
-            onChange={props.onChangeRating}
-            value={props.value}
-          ></s.RatingStar>
+          <s.RatingStar onChange={props.onChangeRating} value={props.value} />
         </s.CommentsId>
         <s.CommentsContentsInput
           value={props.contents}
@@ -45,17 +42,17 @@ export default function BoardCommentsUI(props: IBoardCommentUIProps) {
             <s.Comments key={el._id}>
               <s.CommentsNameWrapper>
                 <s.CommentsName>{el.writer}</s.CommentsName>
-                <s.RatingStar disabled value={el.rating}></s.RatingStar>
+                <s.RatingStar disabled={true} value={el.rating} />
               </s.CommentsNameWrapper>
               <s.CommentsContents>{el.contents}</s.CommentsContents>
               <s.CommentsDate>{getDate(el.createdAt)}</s.CommentsDate>
             </s.Comments>
             <s.CommentsButton>
-              <s.CommentsUpdate
+              {/* <s.CommentsUpdate
                 src="/images/pencil.png"
                 id={el._id}
                 onClick={props.onClickCommentsUpdate}
-              ></s.CommentsUpdate>
+              ></s.CommentsUpdate> */}
               <s.CommentsDelete
                 id={el._id}
                 onClick={props.onClickCommentsDelete}

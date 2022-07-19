@@ -76,7 +76,7 @@ export const Footer = styled.div`
 export const Likes = styled.div`
   width: 30px;
   color: skyblue;
-  display:flex
+  display: flex;
   flex-direction: column;
   align-items: center;
 `;
@@ -92,7 +92,7 @@ export const LikesCount = styled.div`
 export const Dislikes = styled.div`
   width: 30px;
   color: #828282;
-  display:flex
+  display: flex;
   flex-direction: column;
   align-items: center;
   margin-left: 30px;

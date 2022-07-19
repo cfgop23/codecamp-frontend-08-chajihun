@@ -107,9 +107,10 @@ export default function BoardWrite(props: IBoardWriteProps) {
           variables: {
             createBoardInput: {
               writer: name,
-              password: password,
-              title: title,
+              password, //shorthand property
+              title,
               contents: content,
+              //youtubeUrl
             },
           },
         });
@@ -127,6 +128,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
     const updateBoardInput: IUpdateBoardInput = {};
     if (title) updateBoardInput.title = title;
     if (content) updateBoardInput.contents = content;
+    //수정한 것만 업데이트하기 위한 조건
 
     if (!password) {
       setPasswordError("비밀번호를 입력해주세요.");
