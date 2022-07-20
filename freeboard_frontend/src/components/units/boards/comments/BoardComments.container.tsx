@@ -20,7 +20,7 @@ import {
 
 export default function BoardComments() {
   const router = useRouter();
-  const [writer, setWriter] = useState(""); //타입 명시할 때: useState<type>()
+  const [writer, setWriter] = useState(""); // 타입 명시할 때: useState<type>()
   const [password, setPassword] = useState("");
   const [contents, setContents] = useState("");
   const [value, setValue] = useState<number>(0);
@@ -76,7 +76,7 @@ export default function BoardComments() {
             password,
             contents,
             rating: value,
-          }, //rating: 별표
+          }, // rating: 별표
           boardId: router.query.detailsId,
         },
         refetchQueries: [

@@ -1,5 +1,5 @@
-import React, { ChangeEvent } from "react";
-import { IMutation, IQuery } from "../../../../commons/types/generated/types";
+import { ChangeEvent } from "react";
+import { IQuery } from "../../../../commons/types/generated/types";
 
 export interface IIsActiveProps {
   isActive: boolean;
@@ -13,6 +13,7 @@ export interface IBoardWriteProps {
 export interface IUpdateBoardInput {
   title?: string;
   contents?: string;
+  youtubeUrl?: string;
 }
 
 export interface IBoardWriteUIProps {
@@ -22,6 +23,7 @@ export interface IBoardWriteUIProps {
   onChangePassword: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeTitle: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeContent: (event: ChangeEvent<HTMLTextAreaElement>) => void;
+  onChangeYoutubeUrl: (event: ChangeEvent<HTMLInputElement>) => void;
   data?: Pick<IQuery, "fetchBoard">;
   nameError: string;
   passwordError: string;

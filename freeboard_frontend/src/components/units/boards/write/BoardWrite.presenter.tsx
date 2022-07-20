@@ -67,6 +67,14 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
       </s.Container>
       <s.Address></s.Address>
       <s.Address></s.Address>
+      <s.Container>
+        <s.Label>유튜브</s.Label>
+        <s.Youtube
+          placeholder="링크를 복사해주세요."
+          onChange={props.onChangeYoutubeUrl}
+          defaultValue={props.data?.fetchBoard.youtubeUrl || ""}
+        />
+      </s.Container>
       <s.ImgWrapper>
         <s.Label>사진첨부</s.Label>
         <s.UploadButton>+</s.UploadButton>

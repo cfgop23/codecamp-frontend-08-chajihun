@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import ReactPlayer from "react-player";
 
 export const Wrapper = styled.div`
   width: 1200px;
@@ -51,22 +52,31 @@ export const Horizon = styled.div`
 export const Body = styled.div`
   width: 100%;
   height: 100%;
-  margin-top: 80px;
+  margin-top: 50px;
 `;
 export const Title = styled.div`
   font-weight: 700;
   font-size: 36px;
+  padding-left: 20px;
 `;
 export const ContentsWrapper = styled.div`
   width: 100%;
   height: 500px;
-  padding: 30px;
-  margin-top: 80px;
-  border: 1px solid #cacaca;
+  padding: 50px;
+  margin-top: 50px;
+  border-top: 1px solid #cacaca;
 `;
 export const Contents = styled.div`
   font-size: 20px;
 `;
+
+export const YoutubeWrapper = styled.div`
+  margin-top: 200px;
+`;
+export const Youtube = styled(ReactPlayer)`
+  margin: auto;
+`;
+
 export const Footer = styled.div`
   width: 100%;
   display: flex;

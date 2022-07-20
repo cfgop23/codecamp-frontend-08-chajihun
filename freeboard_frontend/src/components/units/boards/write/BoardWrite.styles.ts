@@ -86,7 +86,7 @@ export const AddCode = styled.input`
   width: 77px;
   height: 52px;
   border: 1px solid #cacaca;
-  padding-left: 18px;
+  padding-left: 15px;
 `;
 
 export const AddButton = styled.button`
@@ -110,6 +110,7 @@ export const Youtube = styled.input`
   width: 996px;
   height: 45px;
   border: 1px solid #cacaca;
+  padding: 10px;
 `;
 
 export const ImgWrapper = styled.div`

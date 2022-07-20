@@ -14,5 +14,5 @@ export interface IBoardCommentUIProps {
   password: string;
   contents: string;
   value: number;
-  //setValue: Dispatch ~ 글자 위에 마우스 올려서 확인 가능
+  // setValue: Dispatch ~ 글자 위에 마우스 올려서 확인 가능
 }
