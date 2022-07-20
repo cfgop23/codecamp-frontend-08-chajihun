@@ -4,7 +4,6 @@ import { DaumPostcodeEmbed } from "react-daum-postcode";
 
 export default function ModalAlertPage() {
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [password, setPassword] = useState("");
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -31,7 +30,7 @@ export default function ModalAlertPage() {
       {/* 1. 모달 종료 방식 - 모달 숨기기(자소서같은 내용은 임시저장하기 위해 사용) */}
       <Modal
         title="모달 제목"
-        visible={isModalVisible} //끄는게 아니라 숨기는 것.
+        visible={isModalVisible} // 끄는게 아니라 숨기는 것.
         onOk={handleOk}
         onCancel={handleCancel}
       >
