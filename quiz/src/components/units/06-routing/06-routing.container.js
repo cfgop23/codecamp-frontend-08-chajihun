@@ -21,9 +21,9 @@ export default function RoutingPage() {
     try {
       const result = await createBoard({
         variables: {
-          writer: writer,
-          title: title,
-          contents: contents,
+          writer,
+          title,
+          contents,
         },
       });
 

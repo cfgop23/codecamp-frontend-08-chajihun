@@ -13,11 +13,11 @@ export default function ProductNew(props) {
   const [detail, setDetail] = useState("");
   const [price, setPrice] = useState("");
 
-  const [mycolor, setMycolor] = useState(false);
-  const [sellerError, setSellerError] = useState("");
-  const [nameError, setNameError] = useState("");
-  const [detailError, setDetailError] = useState("");
-  const [priceError, setPriceError] = useState("");
+  // const [mycolor, setMycolor] = useState(false);
+  // const [sellerError, setSellerError] = useState("");
+  // const [nameError, setNameError] = useState("");
+  // const [detailError, setDetailError] = useState("");
+  // const [priceError, setPriceError] = useState("");
 
   const onChangeSeller = (event) => {
     setSeller(event.target.value);
@@ -63,10 +63,10 @@ export default function ProductNew(props) {
     try {
       const result = await createProduct({
         variables: {
-          seller: seller,
+          seller,
           createProductInput: {
-            name: name,
-            detail: detail,
+            name,
+            detail,
             price: Number(price),
           },
         },

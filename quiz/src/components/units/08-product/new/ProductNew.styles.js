@@ -24,7 +24,7 @@ export const Container = styled.div`
 `;
 
 export const Seller = styled.div`
-  width: ${(props) => (props.isSeller ? "0" : "100%")}
+  width: ${(props) => (props.isSeller ? "0" : "100%")};
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;

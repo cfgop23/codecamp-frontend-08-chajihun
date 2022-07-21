@@ -1,5 +1,3 @@
-import * as styles from "./06-routed.styles";
-
 export default function RoutedPageUI(props) {
   return (
     <>

@@ -20,9 +20,9 @@ export default function GraphqlInputPage() {
   const onClickGraphqlApi = async () => {
     const result = await createBoard({
       variables: {
-        writer: writer,
-        title: title,
-        contents: contents,
+        writer,
+        title,
+        contents,
       },
     });
     console.log(result);

@@ -20,7 +20,7 @@ export default function Layout(props: ILayoutProps) {
       <LayoutNavigation />
       <div style={{ display: "flex" }}>
         <LayoutSidebar />
-        <div>{props.children}</div>
+        <div style={{ width: "85%" }}>{props.children}</div>
       </div>
       <LayoutFooter />
     </>

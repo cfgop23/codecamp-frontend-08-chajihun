@@ -54,7 +54,7 @@ export default function FaQPage() {
           <My>마이</My>
           <MyImg src="/images/profile-image.png"></MyImg>
           <Name>임정아</Name>
-          <Arrow> ></Arrow>
+          <Arrow> {">"}</Arrow>
         </Profile>
         <MenuBar>
           <BarTitle>공지사항</BarTitle>

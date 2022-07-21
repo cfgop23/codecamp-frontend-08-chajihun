@@ -2,7 +2,7 @@ import { useState } from "react";
 
 export default function SignupPage() {
   function hello1() {
-    let hello1 = "반갑습니다";
+    const hello1 = "반갑습니다";
     document.getElementById("qqq").innerText = hello1;
   }
 
@@ -13,7 +13,7 @@ export default function SignupPage() {
   }
 
   function counterUp() {
-    let count1 = Number(document.getElementById("www").innerText) + 1;
+    const count1 = Number(document.getElementById("www").innerText) + 1;
     document.getElementById("www").innerText = count1;
   }
 
@@ -24,7 +24,7 @@ export default function SignupPage() {
   }
 
   function random() {
-    let number = String(Math.floor(Math.random() * 1000000)).padStart(6, "0");
+    const number = String(Math.floor(Math.random() * 1000000)).padStart(6, "0");
     document.getElementById("eee").innerText = number;
   }
 
@@ -34,7 +34,7 @@ export default function SignupPage() {
     setRandomNum(String(Math.floor(Math.random() * 1000000)).padStart(6, "0"));
   }
 
-  //회원가입
+  // 회원가입
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
@@ -88,7 +88,6 @@ export default function SignupPage() {
 
     if (emailCorrect === true && passwordCorrect === true) {
       alert("회원가입을 축하합니다.");
-      return;
     }
   }
 

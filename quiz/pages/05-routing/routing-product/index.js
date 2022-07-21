@@ -44,10 +44,10 @@ export default function RoutingPage() {
     try {
       const result = await createProduct({
         variables: {
-          seller: seller,
+          seller,
           createProductInput: {
-            name: name,
-            detail: detail,
+            name,
+            detail,
             price: Number(price),
           },
         },
