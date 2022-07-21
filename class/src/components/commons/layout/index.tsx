@@ -18,7 +18,7 @@ export default function Layout(props: ILayoutProps) {
   const isHiddenHeader = HIDDEN_HEADERS.includes(router.asPath);
 
   const myStyle = {
-    width: "100px",
+    width: "30%",
     height: "700px",
     backgroundColor: "orange",
   };
@@ -29,7 +29,7 @@ export default function Layout(props: ILayoutProps) {
       <LayoutNavigation />
       <div style={{ display: "flex" }}>
         <div style={myStyle}></div>
-        <div>{props.children}</div>
+        <div style={{ width: "70%" }}>{props.children}</div>
       </div>
       <LayoutFooter />
     </>

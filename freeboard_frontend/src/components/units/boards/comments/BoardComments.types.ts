@@ -6,7 +6,7 @@ export interface IBoardCommentUIProps {
   onChangePassword: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeContents: (event: ChangeEvent<HTMLTextAreaElement>) => void;
   onClickComments: () => void;
-  onClickCommentsUpdate: (event: MouseEvent<HTMLButtonElement>) => void;
+  // onClickCommentsUpdate: (event: MouseEvent<HTMLButtonElement>) => void;
   onClickCommentsDelete: (event: MouseEvent<HTMLButtonElement>) => void;
   onChangeRating: (value: number) => void;
   data?: Pick<IQuery, "fetchBoardComments">;

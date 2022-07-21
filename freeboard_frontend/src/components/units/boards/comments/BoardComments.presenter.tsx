@@ -34,7 +34,7 @@ export default function BoardCommentsUI(props: IBoardCommentUIProps) {
         </s.CommentsCreateButton>
       </s.CommentsCreate>
       <s.Table>
-        {props.data?.fetchBoardComments.map((el, i) => (
+        {props.data?.fetchBoardComments.map((el) => (
           <s.CommentsWrapper key={el._id}>
             <s.CommentsProfile>
               <BsPersonCircle />
