@@ -79,9 +79,11 @@ export const ColumnDate = styled.div`
   text-align: center;
 `;
 
+export const Pagination = styled.div``;
+
 export const Footer = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   padding-top: 50px;
 `;
 
@@ -91,7 +93,6 @@ export const Button = styled.button`
   background-color: white;
   border: 1px solid gray;
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
   margin-right: 10px;

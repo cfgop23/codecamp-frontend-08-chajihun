@@ -1,45 +1,37 @@
 import styled from "@emotion/styled";
-import { IActiveProps, IPageNumProps } from "./Pagination";
-
-export const Wrapper = styled.div`
-  padding: 50px;
-`;
-
-export const Row = styled.div`
-  display: flex;
-`;
-
-export const Column = styled.div`
-  width: 25%;
-`;
+import { IActiveProps, IPageNumProps } from "./Pagination.types";
 
 export const PageWrapper = styled.div`
   display: flex;
   align-items: center;
-  margin-left: 50px;
 `;
 
 export const PageNum = styled.div`
-  height: 25px;
-  line-height: 25px;
-  font-size: 25px;
+  height: 16px;
+  line-height: 16px;
+  font-size: 16px;
+  font-weight: 300;
   margin: 5px;
   cursor: pointer;
-  color: ${(props: IPageNumProps) => (props.isPaged ? "skyblue" : "none")};
+  color: ${(props: IPageNumProps) => (props.isPaged ? "skyblue" : "DimGray")};
 `;
 
 export const Prev = styled.button`
-  height: 25px;
-  background-color: ${(props: IActiveProps) =>
-    props.isActive ? "skyblue" : "none"};
+  width: 16px;
+  height: 16px;
+  border: none;
+  background-color: white;
+  color: ${(props: IActiveProps) => (props.isActive ? "skyblue" : "white")};
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 export const Next = styled.button`
-  height: 25px;
-  background-color: ${(props: IActiveProps) =>
-    props.isActive ? "skyblue" : "none"};
+  width: 16px;
+  height: 16px;
+  border: none;
+  background-color: white;
+  color: ${(props: IActiveProps) => (props.isActive ? "skyblue" : "white")};
   display: flex;
   justify-content: center;
   align-items: center;
