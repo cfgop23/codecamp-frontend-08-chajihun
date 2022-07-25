@@ -27,11 +27,12 @@ export default function PaginationPage(props: IPaginationProps) {
     setIsPage(startPage - 10);
   };
   const onClickNext = () => {
-    if (startPage + 10 <= props.lastPage) {
-      setStartPage((prev) => prev + 10);
-      props.refetch({ page: startPage + 10 });
-      setIsPage(startPage + 10);
-    }
+    if (startPage + 10 > props.lastPage) return;
+    // if (startPage + 10 <= props.lastPage) {
+    setStartPage((prev) => prev + 10);
+    props.refetch({ page: startPage + 10 });
+    setIsPage(startPage + 10);
+    // }
   };
   return (
     <s.Wrapper>

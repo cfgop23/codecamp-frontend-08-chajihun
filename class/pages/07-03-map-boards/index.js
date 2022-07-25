@@ -28,7 +28,7 @@ export default function StaticRoutedPage() {
   return (
     <>
       {data?.fetchBoards.map((el) => (
-        <Row>
+        <Row key={el.number}>
           <Column>
             <input type={"checkbox"} />
           </Column>

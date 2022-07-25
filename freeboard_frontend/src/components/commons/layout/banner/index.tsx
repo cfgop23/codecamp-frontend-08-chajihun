@@ -4,13 +4,13 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const Wrapper = styled.div`
-  height: 400px;
+  height: 300px;
   background-color: pink;
 `;
 
 const BannerImg = styled.img`
-  height: 350px;
   margin: auto;
+  height: 300px;
 `;
 
 const ImgWrapper = styled.div`
@@ -18,6 +18,7 @@ const ImgWrapper = styled.div`
 `;
 
 const StyleSlider = styled(Slider)`
+  height: 270px;
   .slick-prev:before,
   .slick-next:before {
     color: black;
@@ -25,11 +26,11 @@ const StyleSlider = styled(Slider)`
     font-size: 30px;
   }
   .slick-prev {
-    left: 700px;
+    left: 500px;
     z-index: 9;
   }
   .slick-next {
-    right: 700px;
+    right: 500px;
     z-index: 9;
   }
 `;

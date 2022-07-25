@@ -18,9 +18,9 @@ export default function Layout(props: ILayoutProps) {
       <LayoutHeader />
       <LayoutBanner />
       <LayoutNavigation />
-      <div style={{ display: "flex" }}>
+      <div style={{ display: "flex", padding: "0 150px 0 150px" }}>
         <LayoutSidebar />
-        <div>{props.children}</div>
+        <div style={{ width: "85%" }}>{props.children}</div>
       </div>
       <LayoutFooter />
     </>

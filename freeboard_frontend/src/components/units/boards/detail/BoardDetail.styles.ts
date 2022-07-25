@@ -2,10 +2,7 @@ import styled from "@emotion/styled";
 import ReactPlayer from "react-player";
 
 export const Wrapper = styled.div`
-  width: 1200px;
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
   margin: 100px;
-  padding: 100px;
   display: flex;
   flex-direction: column;
 `;
