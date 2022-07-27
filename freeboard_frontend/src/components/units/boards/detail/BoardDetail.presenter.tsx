@@ -1,11 +1,11 @@
 import * as s from "./BoardDetail.styles";
-
 import { FiLink2 } from "react-icons/fi";
 import { GoLocation } from "react-icons/go";
 import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
 import { BsPersonCircle } from "react-icons/bs";
-import CommentsPage from "../../../../../pages/freeboard/[detailsId]/comments";
 import { IBoardDetailUIProps } from "./BoardDetail.types";
+import BoardCommentWrite from "../comments/write/BoardCommentsWrite.container";
+import BoardCommentList from "../comments/list/BoardCommentList.container";
 
 export default function BoardDetailUI(props: IBoardDetailUIProps) {
   return (
@@ -75,7 +75,8 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
           삭제하기
         </s.Button>
       </s.FooterButton>
-      <CommentsPage />
+      <BoardCommentWrite />
+      <BoardCommentList />
     </s.Wrapper>
   );
 }

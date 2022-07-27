@@ -28,7 +28,6 @@ export default function BoardList() {
     router.push(`/freeboard/${(event.target as HTMLDivElement).id}`);
   };
 
-  console.log(data);
   return (
     <BoardListUI
       data={data}
