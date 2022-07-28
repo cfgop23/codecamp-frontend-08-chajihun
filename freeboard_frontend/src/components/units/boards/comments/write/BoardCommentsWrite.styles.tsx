@@ -32,12 +32,18 @@ export const CommentsInput = styled.input`
 `;
 
 export const CommentsContentsInput = styled.textarea`
-  width: 1000px;
+  width: 100%;
   height: 160px;
   border: 1px solid #cacaca;
   padding: 20px;
   font-size: 20px;
 `;
+
+export const CommentsFooter = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
 export const CommentsCreateButton = styled.div`
   width: 80px;
   height: 40px;
@@ -46,7 +52,6 @@ export const CommentsCreateButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 920px;
 
   cursor: pointer;
 
@@ -61,7 +66,7 @@ export const RatingStar = styled(Rate)`
 `;
 
 export const ContentsLength = styled.div`
-  width: 100%;
+  width: 100px;
   height: 51px;
   line-height: 51px;
   padding-left: 20px;

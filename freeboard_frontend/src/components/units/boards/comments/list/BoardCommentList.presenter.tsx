@@ -8,11 +8,7 @@ export default function BoardCommentListUI(props: IBoardCommentListUIProps) {
   return (
     <InfiniteScroll pageStart={0} loadMore={props.onFetchMore} hasMore={true}>
       {props.data?.fetchBoardComments.map((el) => (
-        <BoardCommentListUIItem
-          key={el._id}
-          el={el}
-          onClickCommentsDelete={props.onClickCommentsDelete}
-        />
+        <BoardCommentListUIItem key={el._id} el={el} />
       ))}
     </InfiniteScroll>
   );

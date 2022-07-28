@@ -6,16 +6,20 @@ import { getErrorMessage } from "../../../../../commons/libraries/utils";
 import {
   IMutation,
   IMutationCreateBoardCommentArgs,
+  IMutationUpdateBoardCommentArgs,
+  IUpdateBoardCommentInput,
 } from "../../../../../commons/types/generated/types";
 import { FETCH_BOARD_COMMENTS } from "../list/BoardCommentList.queries";
 import BoardCommentWriteUI from "./BoardCommentsWrite.presenter";
 
 import {
   CREATE_BOARD_COMMENT,
+  UPDATE_BOARD_COMMENT,
   // UPDATE_BOARD_COMMENT,
 } from "./BoardCommentsWrite.queries";
+import { IBoardCommentWriteProps } from "./BoardCommentsWrite.types";
 
-export default function BoardCommentWrite() {
+export default function BoardCommentWrite(props: IBoardCommentWriteProps) {
   const router = useRouter();
   const [writer, setWriter] = useState(""); // 타입 명시할 때: useState<type>()
   const [password, setPassword] = useState("");
@@ -27,7 +31,10 @@ export default function BoardCommentWrite() {
     IMutationCreateBoardCommentArgs
   >(CREATE_BOARD_COMMENT);
 
-  // const [updateBoardComment] = useMutation(UPDATE_BOARD_COMMENT);
+  const [updateBoardComment] = useMutation<
+    Pick<IMutation, "updateBoardComment">,
+    IMutationUpdateBoardCommentArgs
+  >(UPDATE_BOARD_COMMENT);
 
   const onChangeWriter = (event: ChangeEvent<HTMLInputElement>) => {
     setWriter(event.target.value);
@@ -45,7 +52,7 @@ export default function BoardCommentWrite() {
     setValue(value);
   };
 
-  const onClickComments = async () => {
+  const onClickCommentsWrite = async () => {
     if (typeof router.query.detailsId !== "string") return;
     if (!writer || !contents) {
       return;
@@ -81,31 +88,45 @@ export default function BoardCommentWrite() {
     setValue(0);
   };
 
-  // const onClickCommentsUpdate = async (
-  //   event: MouseEvent<HTMLButtonElement>
-  // ) => {
-  //   const myPassword = prompt("비밀번호를 입력해주세요.");
+  const onClickCommentsUpdate = async () => {
+    if (!contents) {
+      alert("내용이 수정되지 않았습니다.");
+      return;
+    }
+    if (!password) {
+      alert("비밀번호가 입력되지 않았습니다.");
+      return;
+    }
 
-  //   try {
-  //     await updateBoardComment({
-  //       variables: {
-  //         updateBoardCommentInput: {
-  //           contents,
-  //           rating: value,
-  //         },
-  //         password,
-  //         boardCommentId: (event.target as HTMLButtonElement).id,
-  //       },
-  //     });
-  //   } catch (error) {
-  //     getErrorMessage(error);
-  //   }
-  // };
+    try {
+      const updateBoardCommentInput: IUpdateBoardCommentInput = {};
+      if (contents) updateBoardCommentInput.contents = contents;
+      if (value !== props.el?.rating) updateBoardCommentInput.rating = value;
+      if (typeof props.el?._id !== "string") return;
+
+      await updateBoardComment({
+        variables: {
+          updateBoardCommentInput,
+          password,
+          boardCommentId: props.el?._id,
+        },
+        refetchQueries: [
+          {
+            query: FETCH_BOARD_COMMENTS,
+            variables: { boardId: router.query.detailsId },
+          },
+        ],
+      });
+      props.setIsEdit?.(false);
+    } catch (error) {
+      getErrorMessage(error);
+    }
+  };
 
   return (
     <BoardCommentWriteUI
-      onClickComments={onClickComments}
-      // onClickCommentsUpdate={onClickCommentsUpdate}
+      onClickCommentsWrite={onClickCommentsWrite}
+      onClickCommentsUpdate={onClickCommentsUpdate}
       onChangeWriter={onChangeWriter}
       onChangePassword={onChangePassword}
       onChangeContents={onChangeContents}
@@ -114,6 +135,9 @@ export default function BoardCommentWrite() {
       password={password}
       contents={contents}
       value={value}
+      setValue={setValue}
+      isEdit={props.isEdit}
+      el={props.el}
     />
   );
 }

@@ -1,4 +1,3 @@
-import { MouseEvent } from "react";
 import {
   IBoardComment,
   IQuery,
@@ -6,11 +5,9 @@ import {
 
 export interface IBoardCommentListUIProps {
   data?: Pick<IQuery, "fetchBoardComments">;
-  onClickCommentsDelete: (event: MouseEvent<HTMLButtonElement>) => void;
   onFetchMore: () => void;
 }
 
 export interface IBoardCommentListUIItemProps {
   el: IBoardComment;
-  onClickCommentsDelete: (event: MouseEvent<HTMLButtonElement>) => void;
 }
