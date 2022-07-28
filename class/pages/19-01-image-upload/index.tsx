@@ -1,0 +1,45 @@
+import { gql, useMutation } from "@apollo/client";
+import { Modal } from "antd";
+import { ChangeEvent, useState } from "react";
+import {
+  IMutation,
+  IMutationUploadFileArgs,
+} from "../../src/commons/types/generated/types";
+
+const UPLOAD_FILE = gql`
+  mutation uploadFile($file: Upload!) {
+    uploadFile(file: $file) {
+      url
+    }
+  }
+`;
+
+export default function ImageUploadPage() {
+  const [imageUrl, setImageUrl] = useState("");
+
+  const [uploadFile] = useMutation<
+    Pick<IMutation, "uploadFile">,
+    IMutationUploadFileArgs
+  >(UPLOAD_FILE); // 타입스크립트 <,> 왼쪽은 result 타입, 오른쪽은 variables 타입
+
+  const onChangeFile = async (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    console.log(file);
+
+    try {
+      const result = await uploadFile({ variables: { file } });
+      console.log(result.data?.uploadFile.url);
+      setImageUrl(result.data?.uploadFile.url || "");
+    } catch (error) {
+      Modal.error({ content: "error!" });
+    }
+  };
+
+  return (
+    <>
+      <input type="file" onChange={onChangeFile} />{" "}
+      {/* multiple : 파일 여러개 불러올 때 */}
+      <img src={`https://storage.googleapis.com/${imageUrl}`} alt="" />
+    </>
+  );
+}

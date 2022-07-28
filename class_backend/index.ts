@@ -68,8 +68,8 @@ const server = new ApolloServer({
   resolvers,
   cors: true,
   // cors: {
-  //   origin: []
-  // }
+  //   origin: ["", ""]
+  // } // 특정 사이트에 오픈할 때
 });
 
 const AppDataSource = new DataSource({

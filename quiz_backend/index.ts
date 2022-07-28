@@ -64,7 +64,7 @@ const resolvers = {
         seller: args.seller,
         ...args.createProductInput,
       });
-      return "등록에 성공했습니다.";
+      return "등록되었습니다.";
     },
 
     updateProduct: async (_: any, args: any) => {
