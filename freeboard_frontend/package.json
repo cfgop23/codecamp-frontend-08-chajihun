@@ -28,7 +28,8 @@
     "react-infinite-scroller": "^1.2.6",
     "react-player": "^2.10.1",
     "react-slick": "^0.29.0",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@types/node": "17.0.2",
