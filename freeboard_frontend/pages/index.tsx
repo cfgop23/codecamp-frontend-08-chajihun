@@ -1,3 +1,5 @@
-export default function Home() {
-  return <div>여기는 홈입니다.</div>;
+import Home from "../src/components/units/home/Home.container";
+
+export default function HomePage() {
+  return <Home />;
 }
