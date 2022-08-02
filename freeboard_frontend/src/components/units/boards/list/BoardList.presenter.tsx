@@ -2,11 +2,20 @@ import { getDate } from "../../../../commons/libraries/utils";
 import * as s from "./BoardList.styles";
 import { IBoardListUIPros } from "./BoardList.types";
 import Pagination from "../../../commons/paginations/Pagination.container";
+import SearchDebounce from "../../../commons/searchbars/debounce/SearchDebounce.container";
+import { v4 as uuidv4 } from "uuid";
 
 export default function BoardListUI(props: IBoardListUIPros) {
   return (
     <s.Wrapper>
       <s.Title>코드캠프 게시판</s.Title>
+      <s.SearchBar>
+        <SearchDebounce
+          refetch={props.refetch}
+          refetchBoardsCount={props.refetchBoardsCount}
+          onChangeKeyword={props.onChangeKeyword}
+        />
+      </s.SearchBar>
       <s.Table>
         <s.RowHead>
           <s.ColumnHeaderId>ID</s.ColumnHeaderId>
@@ -18,7 +27,17 @@ export default function BoardListUI(props: IBoardListUIPros) {
           <s.Row key={el._id}>
             <s.ColumnId>{String(el._id).slice(-4).toUpperCase()}</s.ColumnId>
             <s.ColumnTitle id={el._id} onClick={props.onClickMoveToBoardDetail}>
-              {el.title}
+              {el.title
+                .replaceAll(props.keyword, `#$%${props.keyword}#$%`)
+                .split("#$%")
+                .map((el) => (
+                  <span
+                    key={uuidv4()}
+                    style={{ color: props.keyword === el ? "red" : "black" }}
+                  >
+                    {el}
+                  </span>
+                ))}
             </s.ColumnTitle>
             <s.Column>{el.writer}</s.Column>
             <s.ColumnDate>{getDate(el.createdAt)}</s.ColumnDate>

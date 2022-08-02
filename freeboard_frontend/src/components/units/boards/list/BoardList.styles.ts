@@ -16,9 +16,14 @@ export const Title = styled.div`
   margin-bottom: 60px;
 `;
 
+export const SearchBar = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
+
 export const Table = styled.div`
   border-top: 2px solid #cacaca;
-  margin-top: 20px;
+  margin-top: 10px;
 `;
 
 export const RowHead = styled.div`

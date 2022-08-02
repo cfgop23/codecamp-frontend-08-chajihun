@@ -11,6 +11,7 @@ import { AppProps } from "next/app";
 import { globalStyles } from "../src/commons/styles/globalStyles";
 import Layout from "../src/components/commons/layout";
 import { createUploadLink } from "apollo-upload-client";
+import { RecoilRoot } from "recoil";
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -38,16 +39,19 @@ function MyApp({ Component, pageProps }: AppProps) {
   const client = new ApolloClient({
     link: ApolloLink.from([uploadLink]),
     cache: new InMemoryCache(),
+    connectToDevTools: true,
   });
 
   return (
-    <ApolloProvider client={client}>
-      <Global styles={globalStyles} />
-      <Layout>
-        <Component {...pageProps} />
-        {/* Component : 우리가 접속한 페이지 컴포넌트 */}
-      </Layout>
-    </ApolloProvider>
+    <RecoilRoot>
+      <ApolloProvider client={client}>
+        <Global styles={globalStyles} />
+        <Layout>
+          <Component {...pageProps} />
+          {/* Component : 우리가 접속한 페이지 컴포넌트 */}
+        </Layout>
+      </ApolloProvider>
+    </RecoilRoot>
   );
 }
 
