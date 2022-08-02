@@ -2,7 +2,8 @@
 import { ReactNode } from "react";
 import LayoutBanner from "./banner";
 import LayoutFooter from "./footer/Footer.presenter";
-import LayoutHeader from "./header/Header.presenter";
+import LayoutHeader from "./header/Header.container";
+
 import LayoutNavigation from "./navigation";
 // import LayoutSidebar from "./sidebar";
 

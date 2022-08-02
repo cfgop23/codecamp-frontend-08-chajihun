@@ -4,32 +4,48 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 export const Wrapper = styled.div`
-  height: 600px;
-  background-color: pink;
+  height: 650px;
+  background-color: black;
 `;
 
 export const BannerImg = styled.img`
   margin: auto;
-  height: 600px;
+  width: 100%;
+  height: 650px;
+  object-fit: cover;
 `;
 
-export const ImgWrapper = styled.div`
-  width: 500px;
-`;
+export const ImgWrapper = styled.div``;
 
 export const StyleSlider = styled(Slider)`
-  height: 550px;
-  .slick-prev:before,
-  .slick-next:before {
-    opacity: 1;
-    font-size: 30px;
+  .slick-list {
   }
+
+  .slick-prev::before,
+  .slick-next::before {
+    opacity: 1;
+    font-size: 50px;
+    opacity: 0.3;
+    color: white;
+  }
+
   .slick-prev {
-    left: 500px;
+    left: 20px;
     z-index: 9;
   }
   .slick-next {
-    right: 500px;
+    right: 50px;
     z-index: 9;
+  }
+
+  .slick-dots li button:before {
+    font-size: 60px;
+    content: "-";
+    color: white;
+  }
+
+  .slick-dots li.slick-active button:before {
+    opacity: 0.75;
+    color: white;
   }
 `;

@@ -10,8 +10,20 @@ export const Wrapper = styled.div`
 `;
 
 export const Title = styled.div`
+  display: flex;
+`;
+
+export const TitleIcon = styled.img`
+  width: 30px;
+  height: 40px;
+  margin-right: 10px;
+`;
+
+export const TitleName = styled.div`
   color: #7a583a;
   font-size: 30px;
+  font-family: "Mouse Memoirs", sans-serif;
+  cursor: pointer;
 `;
 
 export const Menu = styled.div`

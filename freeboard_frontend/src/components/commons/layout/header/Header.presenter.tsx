@@ -1,9 +1,17 @@
 import * as s from "./Header.styles";
+import { ILayoutHeaderUIProps } from "./Header.types";
 
-export default function LayoutHeader() {
+export default function LayoutHeaderUI(props: ILayoutHeaderUIProps) {
   return (
     <s.Wrapper>
-      <s.Title>커피트리</s.Title>
+      <s.Title onClick={props.onClickToHome}>
+        <s.TitleIcon src="/images/tree.png" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Mouse+Memoirs&display=swap"
+          rel="stylesheet"
+        />
+        <s.TitleName>CafeTree</s.TitleName>
+      </s.Title>
       <s.Menu>
         <s.Store>스토어</s.Store>
         <s.review>리뷰</s.review>
