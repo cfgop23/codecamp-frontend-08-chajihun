@@ -10,7 +10,7 @@ export default function LayoutHeaderUI(props: ILayoutHeaderUIProps) {
           href="https://fonts.googleapis.com/css2?family=Mouse+Memoirs&display=swap"
           rel="stylesheet"
         />
-        <s.TitleName>CafeTree</s.TitleName>
+        <s.TitleName>Café Tree</s.TitleName>
       </s.Title>
       <s.Menu>
         <s.Store>스토어</s.Store>
