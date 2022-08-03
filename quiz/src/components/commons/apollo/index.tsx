@@ -9,7 +9,6 @@ import { ReactNode } from "react";
 import { useRecoilState } from "recoil";
 import { accessTokenState } from "../../../commons/store";
 
-// 초기화 방지를 위해 함수 밖에 배치
 const APOLLO_CACHE = new InMemoryCache();
 
 interface IApolloSettingsProps {

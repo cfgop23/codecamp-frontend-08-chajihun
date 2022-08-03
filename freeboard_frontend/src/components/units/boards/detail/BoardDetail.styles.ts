@@ -41,7 +41,7 @@ export const Location = styled.div`
   font-size: 30px;
 `;
 export const Horizon = styled.div`
-  width: 996px;
+  width: 100%;
   border: none;
   border-top: 1px solid #bdbdbd;
   margin-top: 20px;
@@ -65,6 +65,19 @@ export const ContentsWrapper = styled.div`
 `;
 export const Contents = styled.div`
   font-size: 20px;
+`;
+
+export const ImageWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const Image = styled.img`
+  width: 486px;
+  height: 300px;
+  margin: 30px;
+  object-fit: cover;
 `;
 
 export const YoutubeWrapper = styled.div`

@@ -117,7 +117,7 @@ export const ImgWrapper = styled.div`
   margin-bottom: 20px;
 `;
 
-export const UploadButton = styled.button`
+export const Upload = styled.button`
   width: 78px;
   height: 78px;
   border: none;

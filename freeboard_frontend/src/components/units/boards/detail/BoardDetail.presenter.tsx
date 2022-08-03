@@ -32,16 +32,23 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
         <s.Title>{props.data?.fetchBoard?.title}</s.Title>
         <s.ContentsWrapper>
           <s.Contents>{props.data?.fetchBoard?.contents}</s.Contents>
-          <s.YoutubeWrapper>
-            {props.data?.fetchBoard.youtubeUrl && (
-              <s.Youtube
-                url={props.data?.fetchBoard.youtubeUrl}
-                width="486px"
-                height="240px"
-              />
-            )}
-          </s.YoutubeWrapper>
         </s.ContentsWrapper>
+        <s.ImageWrapper>
+          {props.data?.fetchBoard.images
+            ?.filter((el: string) => el)
+            .map((el: string) => (
+              <s.Image key={el} src={`https://storage.googleapis.com/${el}`} />
+            ))}
+        </s.ImageWrapper>
+        <s.YoutubeWrapper>
+          {props.data?.fetchBoard.youtubeUrl && (
+            <s.Youtube
+              url={props.data?.fetchBoard.youtubeUrl}
+              width="486px"
+              height="240px"
+            />
+          )}
+        </s.YoutubeWrapper>
       </s.Body>
       <s.Footer>
         <s.Likes>

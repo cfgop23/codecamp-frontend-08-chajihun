@@ -14,6 +14,7 @@ export interface IUpdateBoardInput {
   title?: string;
   contents?: string;
   youtubeUrl?: string;
+  images?: string[];
 }
 
 export interface IBoardWriteUIProps {
@@ -24,6 +25,7 @@ export interface IBoardWriteUIProps {
   onChangeTitle: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeContent: (event: ChangeEvent<HTMLTextAreaElement>) => void;
   onChangeYoutubeUrl: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangeImgUrl: (fileUrls: string, index: number) => void;
   data?: Pick<IQuery, "fetchBoard">;
   nameError: string;
   passwordError: string;
@@ -31,4 +33,5 @@ export interface IBoardWriteUIProps {
   contentsError: string;
   isEdit: boolean;
   isActive: boolean;
+  imgUrls: string[];
 }

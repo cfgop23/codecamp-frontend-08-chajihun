@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent } from "react";
+import React, { useState, ChangeEvent, useEffect } from "react";
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import { CREATE_BOARD, UPDATE_BOARD } from "./BoardWrite.queries";
@@ -19,7 +19,6 @@ export default function BoardWrite(props: IBoardWriteProps) {
   const [password, setPassword] = useState("");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [youtubeUrl, setYoutubeUrl] = useState("");
 
   const [nameError, setNameError] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -27,6 +26,9 @@ export default function BoardWrite(props: IBoardWriteProps) {
   const [contentsError, setContentsError] = useState("");
 
   const [isActive, setIsActive] = useState(false);
+
+  const [youtubeUrl, setYoutubeUrl] = useState("");
+  const [imgUrls, setImgUrls] = useState(["", "", ""]);
 
   const [createBoard] = useMutation<
     Pick<IMutation, "createBoard">,
@@ -93,6 +95,18 @@ export default function BoardWrite(props: IBoardWriteProps) {
     setYoutubeUrl(event.target.value);
   };
 
+  const onChangeImgUrl = (imgUrl: string, index: number) => {
+    const newImgUrls = [...imgUrls];
+    newImgUrls[index] = imgUrl;
+    setImgUrls(newImgUrls);
+  };
+
+  useEffect(() => {
+    if (props.data?.fetchBoard.images?.length) {
+      setImgUrls([...props.data?.fetchBoard.images]);
+    }
+  }, [props.data]);
+
   const onClickSubmit = async () => {
     if (!name) {
       setNameError("작성자를 입력해주세요.");
@@ -117,6 +131,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
               title,
               contents: content,
               youtubeUrl,
+              images: [...imgUrls],
             },
           },
         });
@@ -131,10 +146,16 @@ export default function BoardWrite(props: IBoardWriteProps) {
   };
 
   const onClickUpdate = async () => {
+    const currentFiles = JSON.stringify(imgUrls);
+    const defaultFiles = JSON.stringify(props.data?.fetchBoard.images);
+    const isChangedFiles = currentFiles !== defaultFiles;
+
     const updateBoardInput: IUpdateBoardInput = {};
     if (title) updateBoardInput.title = title;
     if (content) updateBoardInput.contents = content;
     if (youtubeUrl) updateBoardInput.youtubeUrl = youtubeUrl;
+    if (isChangedFiles) updateBoardInput.images = imgUrls;
+
     // 수정한 것만 업데이트하기 위한 조건
 
     if (!password) {
@@ -180,9 +201,11 @@ export default function BoardWrite(props: IBoardWriteProps) {
       onChangeYoutubeUrl={onChangeYoutubeUrl}
       onClickSubmit={onClickSubmit}
       onClickUpdate={onClickUpdate}
+      onChangeImgUrl={onChangeImgUrl}
       isEdit={props.isEdit}
       isActive={isActive}
       data={props.data}
+      imgUrls={imgUrls}
     />
   );
 }
