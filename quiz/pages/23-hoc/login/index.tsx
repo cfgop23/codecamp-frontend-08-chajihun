@@ -17,9 +17,9 @@ const LOGIN_USER = gql`
 `;
 
 export default function LoginPage() {
-  const router = useRouter();
-
   const [, setAccessToken] = useRecoilState(accessTokenState);
+
+  const router = useRouter();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -37,38 +37,23 @@ export default function LoginPage() {
   };
 
   const onClickLogin = async () => {
-    try {
-      const result = await loginUser({
-        variables: { email, password },
-      });
-      const accessToken = result.data?.loginUser.accessToken;
-      console.log(accessToken);
-
-      if (!accessToken) {
-        return;
-      }
-      setAccessToken(accessToken);
-      alert("로그인에 성공하였습니다.");
-      router.push("/22-01-login/login-success");
-    } catch (error) {
-      router.push("/22-01-login/login-success");
+    const result = await loginUser({
+      variables: { email, password },
+    });
+    const accessToken = result.data?.loginUser.accessToken;
+    if (!accessToken) {
+      alert("로그인에 실패하였습니다.");
+      return;
     }
+    setAccessToken(accessToken);
+    alert("로그인에 성공하였습니다.");
+    localStorage.setItem("accessToken", accessToken);
+    router.push("/23-hoc/main");
   };
-
-  //   const result = await loginUser({
-  //     variables: { email, password },
-  //   });
-  //   const accessToken = result.data?.loginUser.accessToken;
-  //   console.log(accessToken);
-
-  //   setAccessToken(accessToken);
-  //   alert("로그인에 성공하였습니다.");
-  //   router.push("/22-01-login/login-success");
-  // };
 
   return (
     <>
-      이메일: <input type="text" onChange={onChangeEmail} />
+      아이디: <input type="text" onChange={onChangeEmail} />
       비밀번호: <input type="password" onChange={onChangePassword} />
       <button onClick={onClickLogin}>로그인</button>
     </>
