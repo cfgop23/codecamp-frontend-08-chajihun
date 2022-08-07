@@ -7,7 +7,7 @@ import {
 import { createUploadLink } from "apollo-upload-client";
 import { ReactNode, useEffect } from "react";
 import { useRecoilState } from "recoil";
-import { accessTokenState } from "../../../commons/store";
+import { accessTokenState, userInfoState } from "../../../commons/store";
 
 // 초기화 방지를 위해 함수 밖에 배치
 const APOLLO_CACHE = new InMemoryCache();
@@ -18,6 +18,7 @@ interface IApolloSettingsProps {
 
 export default function ApolloSettings(props: IApolloSettingsProps) {
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
+  const [, setUserInfo] = useRecoilState(userInfoState);
 
   // // 1. 프리렌더링 예제 - process.browser 방법
   // if (process.browser) {
@@ -45,7 +46,11 @@ export default function ApolloSettings(props: IApolloSettingsProps) {
   useEffect(() => {
     console.log("지금은 브라우저다.");
     const accessToken = localStorage.getItem("accessToken") || "";
+    const userInfo = localStorage.getItem("userInfo");
     setAccessToken(accessToken);
+
+    if (!accessToken || !userInfo) return;
+    setUserInfo(JSON.parse(userInfo)); // 객체형태로 복구
   }, []);
 
   const uploadLink = createUploadLink({
