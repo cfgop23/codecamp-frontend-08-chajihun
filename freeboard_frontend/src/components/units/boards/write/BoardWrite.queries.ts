@@ -20,5 +20,6 @@ export const UPDATE_BOARD = gql`
       boardId: $boardId
     ) {
       _id
+    }
   }
 `;
