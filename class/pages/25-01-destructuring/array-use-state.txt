@@ -1,0 +1,28 @@
+function useState(aaa){
+    const myState = aaa // aaa를 사용해서 state의 초기값 설정
+
+    const mySetState = (bbb) => {
+        console.log(bbb + "로 myState를 변경하는 중...") // 1. myState를 변경하기
+        console.log("컴포넌트를 리렌더링 시키는 중...") // 2. 해당 state가 사용된 컴포넌트를 리렌더링 시키기(render 함수 호출)
+    }
+
+    return [myState, mySetState]
+}
+
+const [ count, setCount ] = useState(0)
+
+count
+0
+
+setCount(1)
+ 1로 myState를 변경하는 중...
+ 컴포넌트를 리렌더링 시키는 중...
+
+const qqq = useState("철수")
+
+qqq[0]
+'철수'
+
+qqq[1]("영희")
+ 영희로 myState를 변경하는 중... 
+ 컴포넌트를 리렌더링 시키는 중...

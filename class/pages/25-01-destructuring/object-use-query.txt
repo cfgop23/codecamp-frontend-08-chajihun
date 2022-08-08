@@ -1,0 +1,32 @@
+const {age, school} = { name: '철수', age: 12, school: '떡잎초'}
+
+age
+12
+
+school
+'떡잎초'
+
+name
+''
+
+const [, bbb] = ["철수", "영희", "훈이"]
+
+bbb
+'영희'
+
+function useQuery(aaa){
+    
+    // aaa를 통해서 Backend에 API 요청함
+
+    return {
+        data: { fetchBoards: "결과값”, loading: "loading..." }
+    }
+}
+
+const { data, loading } = useQuery("FETCH_BOARDS")
+
+data
+{fetchBoards: '결과값'}
+
+data.fetchBoards
+'결과값'

@@ -48,6 +48,7 @@ export default function BoardDetail() {
   const onClickUpdate = () => {
     router.push(`/freeboard/${router.query.detailsId}/edit`);
   };
+
   const onClickMoveToBoards = () => {
     router.push("/freeboard");
   };
