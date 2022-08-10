@@ -8,9 +8,10 @@ export const globalStyles = css`
     /* font-family: "myfont"; */
   }
 
-  .body {
+  body {
     width: 100%;
     height: 100%;
+    background-color: #fafafa;
   }
 
   @font-face {

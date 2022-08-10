@@ -1,5 +1,14 @@
+import { uniqueId } from "lodash";
 import * as s from "./Header.styles";
 import { ILayoutHeaderUIProps } from "./Header.types";
+
+const HEADER_MENUS = [
+  { name: "스토어", page: "/store" },
+  { name: "리뷰", page: "/freeboard" },
+  { name: "소개", page: "/introduce" },
+  { name: "장바구니", page: "/basket" },
+  { name: "로그인", page: "/login" },
+];
 
 export default function LayoutHeaderUI(props: ILayoutHeaderUIProps) {
   return (
@@ -13,12 +22,11 @@ export default function LayoutHeaderUI(props: ILayoutHeaderUIProps) {
         <s.TitleName>Café Tree</s.TitleName>
       </s.Title>
       <s.Menu>
-        <s.Store>스토어</s.Store>
-        <s.review>리뷰</s.review>
-        <s.Community>커뮤니티</s.Community>
-        <s.Introduce>소개</s.Introduce>
-        <s.Basket>장바구니</s.Basket>
-        <s.MyPage>My Page</s.MyPage>
+        {HEADER_MENUS.map((el) => (
+          <s.MenuItem key={uniqueId()} id={el.page} onClick={props.onClickMenu}>
+            {el.name}
+          </s.MenuItem>
+        ))}
       </s.Menu>
     </s.Wrapper>
   );

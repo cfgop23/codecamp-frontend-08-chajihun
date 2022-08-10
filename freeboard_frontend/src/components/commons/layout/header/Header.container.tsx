@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import { MouseEvent } from "react";
 import LayoutHeaderUI from "./Header.presenter";
 
 export default function LayoutHeader() {
@@ -8,5 +9,11 @@ export default function LayoutHeader() {
     router.push("/");
   };
 
-  return <LayoutHeaderUI onClickToHome={onClickToHome} />;
+  const onClickMenu = (event: MouseEvent<HTMLDivElement>) => {
+    if (event.target instanceof HTMLDivElement) router.push(event.target.id);
+  };
+
+  return (
+    <LayoutHeaderUI onClickToHome={onClickToHome} onClickMenu={onClickMenu} />
+  );
 }

@@ -2,11 +2,13 @@ import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
   width: 100%;
-  height: 60px;
+  height: 70px;
   display: flex;
   justify-content: space-around;
   align-items: center;
   margin-top: 3px;
+  border-bottom: 1px solid #d9d9d9;
+  background-color: #fff;
 `;
 
 export const Title = styled.div`
@@ -27,19 +29,14 @@ export const TitleName = styled.div`
 `;
 
 export const Menu = styled.div`
-  width: 500px;
+  width: 400px;
   display: flex;
   justify-content: space-between;
 `;
 
-export const Store = styled.div``;
-
-export const review = styled.div``;
-
-export const Community = styled.div``;
-
-export const Introduce = styled.div``;
-
-export const Basket = styled.div``;
-
-export const MyPage = styled.div``;
+export const MenuItem = styled.div`
+  cursor: pointer;
+  :hover {
+    color: skyblue;
+  }
+`;
