@@ -1,4 +1,4 @@
-import { gql, useMutation, useQuery } from "@apollo/client";
+import { gql, useQuery } from "@apollo/client";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { ChangeEvent, useState } from "react";

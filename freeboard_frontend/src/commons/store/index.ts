@@ -17,3 +17,8 @@ export const userInfoState = atom({
     name: "",
   },
 });
+
+export const isActiveState = atom({
+  key: "isActiveState",
+  default: false,
+});

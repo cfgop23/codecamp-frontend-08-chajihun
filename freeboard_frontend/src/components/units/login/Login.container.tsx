@@ -2,7 +2,11 @@ import { useApolloClient, useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import { ChangeEvent, MouseEvent, useState } from "react";
 import { useRecoilState } from "recoil";
-import { accessTokenState, userInfoState } from "../../../commons/store";
+import {
+  accessTokenState,
+  isActiveState,
+  userInfoState,
+} from "../../../commons/store";
 import {
   IMutation,
   IMutationLoginUserArgs,
@@ -14,8 +18,10 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState("");
+
   const [, setAccessToken] = useRecoilState(accessTokenState);
   const [, setUserInfo] = useRecoilState(userInfoState);
+  const [, setIsActive] = useRecoilState(isActiveState);
 
   const router = useRouter();
   const client = useApolloClient();
@@ -27,23 +33,32 @@ export default function Login() {
 
   const onChangeEmail = (event: ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
+
+    if (event.target.value && password) {
+      setIsActive(true);
+    } else setIsActive(false);
   };
 
   const onChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
+
+    if (event.target.value && email) {
+      setIsActive(true);
+    } else setIsActive(false);
   };
 
   const onClickLogin = async () => {
+    if (!email) {
+      setLoginError("이메일을 입력하세요.");
+      return;
+    }
+
     try {
       const result = await loginUser({
         variables: { email, password },
       });
-      const accessToken = result.data?.loginUser.accessToken;
 
-      if (!email) {
-        setLoginError("이메일을 입력하세요.");
-        return;
-      }
+      const accessToken = result.data?.loginUser.accessToken;
 
       if (!accessToken) {
         setLoginError("이메일 또는 비밀번호를 잘못 입력했습니다.");
@@ -63,10 +78,11 @@ export default function Login() {
 
       setAccessToken(accessToken);
       setUserInfo(userInfo);
+      setIsActive(false);
       localStorage.setItem("accessToken", accessToken);
       localStorage.setItem("userInfo", JSON.stringify(userInfo));
 
-      router.push("/mypage");
+      router.push("/");
     } catch (error) {
       setLoginError("이메일 또는 비밀번호를 잘못 입력했습니다.");
     }

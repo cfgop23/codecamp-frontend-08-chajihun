@@ -23,19 +23,12 @@ export const InputWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  margin-bottom: 20px;
 `;
 
 export const Label = styled.div`
   font-size: 20px;
   margin: 0 0 10px 10px;
-`;
-
-export const Input = styled.input`
-  height: 40px;
-  margin-bottom: 20px;
-  padding-left: 10px;
-  border: none;
-  border-bottom: 1px solid #d9d9d9;
 `;
 
 export const ErrorMessage = styled.div`
@@ -44,14 +37,6 @@ export const ErrorMessage = styled.div`
   height: 40px;
   color: red;
   line-height: 40px;
-`;
-export const Button = styled.button`
-  margin-top: 30px;
-  width: 200px;
-  height: 40px;
-  color: #7a583a;
-  background-color: #f0f0f0;
-  border: none;
 `;
 
 export const Footer = styled.div`

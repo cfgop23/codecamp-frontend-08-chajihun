@@ -1,5 +1,3 @@
-import { gql } from "@apollo/client";
-
 // const FETCH_POINT_TRANSACTIONS_OF_LOADING = gql`
 //   query fetchPointTransactionsOfLoading(){
 //     fetchPointTransactionsOfLoading()

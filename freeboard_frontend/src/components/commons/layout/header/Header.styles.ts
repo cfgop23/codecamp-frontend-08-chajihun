@@ -40,3 +40,15 @@ export const MenuItem = styled.div`
     color: skyblue;
   }
 `;
+
+export const User = styled.div`
+  font-weight: 600;
+  cursor: pointer;
+`;
+
+export const Login = styled.div`
+  cursor: pointer;
+  :hover {
+    color: skyblue;
+  }
+`;

@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { CREATE_USER } from "./Signup.queries";
 import { FormValue } from "./Signup.types";
 import SignupUI from "./Signup.presenter";
+import { getErrorMessage } from "../../../commons/libraries/utils";
 
 const schema = yup.object({
   email: yup
@@ -47,9 +48,10 @@ export default function Signup() {
         },
       });
       console.log(result);
-      router.push(`/mypage`);
+      alert("회원가입이 완료되었습니다.");
+      router.push(`/login`);
     } catch (error) {
-      alert("이미 존재하는 이메일입니다.");
+      getErrorMessage(error);
     }
   };
 

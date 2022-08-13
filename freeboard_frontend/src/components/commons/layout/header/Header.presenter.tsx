@@ -1,4 +1,6 @@
 import { uniqueId } from "lodash";
+import { useRecoilState } from "recoil";
+import { accessTokenState, userInfoState } from "../../../../commons/store";
 import * as s from "./Header.styles";
 import { ILayoutHeaderUIProps } from "./Header.types";
 
@@ -7,10 +9,11 @@ const HEADER_MENUS = [
   { name: "리뷰", page: "/freeboard" },
   { name: "소개", page: "/introduce" },
   { name: "장바구니", page: "/basket" },
-  { name: "로그인", page: "/login" },
 ];
 
 export default function LayoutHeaderUI(props: ILayoutHeaderUIProps) {
+  const [userInfo] = useRecoilState(userInfoState);
+  const [accessToken] = useRecoilState(accessTokenState);
   return (
     <s.Wrapper>
       <s.Title onClick={props.onClickToHome}>
@@ -27,6 +30,13 @@ export default function LayoutHeaderUI(props: ILayoutHeaderUIProps) {
             {el.name}
           </s.MenuItem>
         ))}
+        {userInfo.name && <s.User>{`안녕하세요. ${userInfo.name}님`}</s.User>}
+        <s.Login
+          id={accessToken ? "/" : "/login"}
+          onClick={accessToken ? props.onClickLogout : props.onClickLogin}
+        >
+          {accessToken ? "로그아웃" : "로그인"}
+        </s.Login>
       </s.Menu>
     </s.Wrapper>
   );
