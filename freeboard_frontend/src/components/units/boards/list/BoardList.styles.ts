@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
+  background-color: #fff;
   margin: auto;
   width: 1200px;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);

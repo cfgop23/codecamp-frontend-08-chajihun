@@ -6,7 +6,7 @@ import SearchDebounceUI from "./SearchDebounce.presenter";
 export default function SearchDebounce(props: ISearchDebounceProps) {
   const getDebounce = _.debounce((value: string) => {
     props.refetch({ search: value, page: 1 });
-    props.refetchBoardsCount({ search: value });
+    // props.refetchBoardsCount({ search: value });
     props.onChangeKeyword(value);
   }, 300);
 
