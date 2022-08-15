@@ -1,7 +1,6 @@
 import * as a from "./Signup.styles";
 import * as s from "../login/Login.styles";
 import { SignupUIProps } from "./Signup.types";
-import ButtonSubmit from "../../commons/buttons/submit";
 import InputLogin from "../../commons/inputs/login";
 
 export default function SignupUI(props: SignupUIProps) {
@@ -48,7 +47,9 @@ export default function SignupUI(props: SignupUIProps) {
       <a.ErrorMessage style={{ color: "red" }}>
         {props.formState.errors.name?.message}
       </a.ErrorMessage>
-      <ButtonSubmit name="회원가입"></ButtonSubmit>
+      <a.ButtonSubmit isActive={props.formState.isValid}>
+        회원가입
+      </a.ButtonSubmit>
     </a.Form>
   );
 }

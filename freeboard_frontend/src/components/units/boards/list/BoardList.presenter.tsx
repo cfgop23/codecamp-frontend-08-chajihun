@@ -23,7 +23,7 @@ export default function BoardListUI(props: IBoardListUIPros) {
           <s.ColumnHeaderWriter>작성자</s.ColumnHeaderWriter>
           <s.ColumnHeaderDate>작성시간</s.ColumnHeaderDate>
         </s.RowHead>
-        {props.data?.fetchBoards.map((el, i) => (
+        {props.data?.fetchBoards.map((el) => (
           <s.Row key={el._id}>
             <s.ColumnId>{String(el._id).slice(-4).toUpperCase()}</s.ColumnId>
             <s.ColumnTitle id={el._id} onClick={props.onClickMoveToBoardDetail}>

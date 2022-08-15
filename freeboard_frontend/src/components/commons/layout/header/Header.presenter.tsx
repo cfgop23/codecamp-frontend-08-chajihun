@@ -5,7 +5,7 @@ import * as s from "./Header.styles";
 import { ILayoutHeaderUIProps } from "./Header.types";
 
 const HEADER_MENUS = [
-  { name: "스토어", page: "/store" },
+  { name: "스토어", page: "/market" },
   { name: "리뷰", page: "/freeboard" },
   { name: "소개", page: "/intro" },
   { name: "장바구니", page: "/basket" },

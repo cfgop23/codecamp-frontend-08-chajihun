@@ -29,6 +29,7 @@ const schema = yup.object({
 
 export default function Signup() {
   const router = useRouter();
+
   const [createUser] = useMutation(CREATE_USER);
 
   const { register, handleSubmit, formState } = useForm<FormValue>({
