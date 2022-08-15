@@ -2,10 +2,14 @@ import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
   width: 100%;
+  margin-top: 215px;
+  /* height: 200px;
+  position: relative;
+  transform: translateY(-100%); */
 `;
 
 export const FooterContent = styled.div`
-  height: 200px;
+  /* height: 200px; */
   border-top: 1px solid #d9d9d9;
 `;
 

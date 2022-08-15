@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import Link from "next/link";
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -29,19 +30,19 @@ export const TitleName = styled.div`
 `;
 
 export const Menu = styled.div`
-  width: 400px;
+  width: 550px;
   display: flex;
   justify-content: space-between;
 `;
 
-export const MenuItem = styled.div`
+export const MenuItem = styled(Link)`
   cursor: pointer;
   :hover {
     color: skyblue;
   }
 `;
 
-export const User = styled.div`
+export const User = styled(Link)`
   font-weight: 600;
   cursor: pointer;
 `;

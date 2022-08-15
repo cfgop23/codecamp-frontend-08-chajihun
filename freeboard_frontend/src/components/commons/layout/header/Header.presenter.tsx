@@ -7,8 +7,9 @@ import { ILayoutHeaderUIProps } from "./Header.types";
 const HEADER_MENUS = [
   { name: "스토어", page: "/store" },
   { name: "리뷰", page: "/freeboard" },
-  { name: "소개", page: "/introduce" },
+  { name: "소개", page: "/intro" },
   { name: "장바구니", page: "/basket" },
+  { name: "마이페이지", page: "/mypage" },
 ];
 
 export default function LayoutHeaderUI(props: ILayoutHeaderUIProps) {
@@ -26,11 +27,15 @@ export default function LayoutHeaderUI(props: ILayoutHeaderUIProps) {
       </s.Title>
       <s.Menu>
         {HEADER_MENUS.map((el) => (
-          <s.MenuItem key={uniqueId()} id={el.page} onClick={props.onClickMenu}>
-            {el.name}
+          <s.MenuItem key={uniqueId()} href={el.page}>
+            <a>{el.name}</a>
           </s.MenuItem>
         ))}
-        {userInfo.name && <s.User>{`안녕하세요. ${userInfo.name}님`}</s.User>}
+        {userInfo.name && (
+          <s.User href="/mypage">
+            <a>{`안녕하세요. ${userInfo.name}님`}</a>
+          </s.User>
+        )}
         <s.Login
           id={accessToken ? "/" : "/login"}
           onClick={accessToken ? props.onClickLogout : props.onClickLogin}

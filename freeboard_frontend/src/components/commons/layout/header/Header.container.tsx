@@ -10,9 +10,9 @@ export default function LayoutHeader() {
     location.reload();
   };
 
-  const onClickMenu = (event: MouseEvent<HTMLDivElement>) => {
-    if (event.target instanceof HTMLDivElement) router.push(event.target.id);
-  };
+  // const onClickMenu = (event: MouseEvent<HTMLDivElement>) => {
+  //   if (event.target instanceof HTMLDivElement) router.push(event.target.id);
+  // };
 
   const onClickLogin = (event: MouseEvent<HTMLDivElement>) => {
     if (event.target instanceof HTMLDivElement) router.push(event.target.id);
@@ -28,7 +28,7 @@ export default function LayoutHeader() {
   return (
     <LayoutHeaderUI
       onClickToHome={onClickToHome}
-      onClickMenu={onClickMenu}
+      // onClickMenu={onClickMenu}
       onClickLogin={onClickLogin}
       onClickLogout={onClickLogout}
     />

@@ -1,4 +1,5 @@
-import { useRouter } from "next/router";
+// import { useRouter } from "next/router";
+import styled from "@emotion/styled";
 import { ReactNode } from "react";
 // import LayoutBanner from "./banner/Banner.presenter";
 import LayoutFooter from "./footer/Footer.presenter";
@@ -11,17 +12,23 @@ interface ILayoutProps {
   children: ReactNode;
 }
 
+const Wrapper = styled.div`
+  /* height: auto;
+  min-height: 100%;
+  padding-bottom: 200px; */
+`;
+
 export default function Layout(props: ILayoutProps) {
-  const router = useRouter();
+  // const router = useRouter();
 
   // const HIDDEN_BANNERS = ["/login", "/login/signup"];
   // const isHiddenBanner = HIDDEN_BANNERS.includes(router.asPath);
 
-  const HIDDEN_FOOTERS = ["/login", "/login/signup"];
-  const isHiddenFooter = HIDDEN_FOOTERS.includes(router.asPath);
+  // const HIDDEN_FOOTERS = ["/login", "/login/signup"];
+  // const isHiddenFooter = HIDDEN_FOOTERS.includes(router.asPath);
 
   return (
-    <>
+    <Wrapper>
       <LayoutHeader />
       {/* {!isHiddenBanner && <LayoutBanner />} */}
       {/* <LayoutNavigation /> */}
@@ -29,7 +36,8 @@ export default function Layout(props: ILayoutProps) {
       {/* <LayoutSidebar /> */}
       <div>{props.children}</div>
       {/* </div> */}
-      {!isHiddenFooter && <LayoutFooter />}
-    </>
+      {/* {!isHiddenFooter && <LayoutFooter />} */}
+      <LayoutFooter />
+    </Wrapper>
   );
 }
