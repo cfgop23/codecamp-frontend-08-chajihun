@@ -27,7 +27,7 @@ const FETCH_USED_ITEMS = gql`
   }
 `;
 
-export default function BoardListUI() {
+export default function MarketList() {
   const [keyword, setKeyword] = useState("");
   const router = useRouter();
 
@@ -38,7 +38,7 @@ export default function BoardListUI() {
   console.log(data);
 
   const onClickMoveToItem = (event: MouseEvent<HTMLDivElement>) => {
-    router.push(`/market/${(event.target as HTMLDivElement).id}`);
+    router.push(`/market/${(event.currentTarget as HTMLDivElement).id}`);
   };
 
   const onChangeKeyword = (value: string) => {
@@ -77,7 +77,11 @@ export default function BoardListUI() {
       <InfiniteScroll pageStart={0} loadMore={onFetchMore} hasMore={true}>
         <s.ItemsWrapper>
           {data?.fetchUseditems.map((el) => (
-            <s.ItemWrapper key={uuidv4()} onClick={onClickMoveToItem}>
+            <s.ItemWrapper
+              id={el._id}
+              key={uuidv4()}
+              onClick={onClickMoveToItem}
+            >
               <s.ItemImg
                 src={`https://storage.googleapis.com/${el.images![0]}`}
                 onError={onErrorImg}

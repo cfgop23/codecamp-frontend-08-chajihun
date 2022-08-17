@@ -8,7 +8,7 @@ const HEADER_MENUS = [
   { name: "스토어", page: "/market" },
   { name: "리뷰", page: "/freeboard" },
   { name: "소개", page: "/intro" },
-  { name: "장바구니", page: "/basket" },
+  { name: "장바구니", page: "/mypage/basket" },
   { name: "마이페이지", page: "/mypage" },
 ];
 

@@ -6,13 +6,13 @@ import {
   accessTokenState,
   isActiveState,
   userInfoState,
-} from "../../../commons/store";
+} from "../../../../commons/store";
 import {
   IMutation,
   IMutationLoginUserArgs,
-} from "../../../commons/types/generated/types";
-import LoginUI from "./Login.presenter";
-import { FETCH_USER_LOGGED_IN, LOGIN_USER } from "./Login.queries";
+} from "../../../../commons/types/generated/types";
+import LoginUI from "./SignIn.presenter";
+import { FETCH_USER_LOGGED_IN, LOGIN_USER } from "./SignIn.queries";
 
 export default function Login() {
   const [email, setEmail] = useState("");

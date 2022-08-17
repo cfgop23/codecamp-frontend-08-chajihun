@@ -1,7 +1,7 @@
 import * as a from "./Signup.styles";
-import * as s from "../login/Login.styles";
+import * as s from "../../login/signin/SignIn.styles";
 import { SignupUIProps } from "./Signup.types";
-import InputLogin from "../../commons/inputs/login";
+import InputLogin from "../../../commons/inputs/login";
 
 export default function SignupUI(props: SignupUIProps) {
   return (

@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import { CREATE_USER } from "./Signup.queries";
 import { FormValue } from "./Signup.types";
 import SignupUI from "./Signup.presenter";
-import { getErrorMessage } from "../../../commons/libraries/utils";
+import { getErrorMessage } from "../../../../commons/libraries/utils";
 
 const schema = yup.object({
   email: yup

@@ -1,7 +1,7 @@
-import { ILoginUIProps } from "./Login.types";
-import * as s from "./Login.styles";
-import InputLogin from "../../commons/inputs/login";
-import ButtonSubmit from "../../commons/buttons/submit";
+import { ILoginUIProps } from "./SignIn.types";
+import * as s from "./SignIn.styles";
+import InputLogin from "../../../commons/inputs/login";
+import ButtonSubmit from "../../../commons/buttons/submit";
 
 const ADDRESS = ["/findemail", "/findpassword", "/login/signup"];
 
