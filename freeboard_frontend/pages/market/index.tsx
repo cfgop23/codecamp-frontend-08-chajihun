@@ -10,6 +10,7 @@ import {
   IQuery,
   IQueryFetchUseditemsArgs,
 } from "../../src/commons/types/generated/types";
+import Link from "next/link";
 
 const FETCH_USED_ITEMS = gql`
   query fetchUseditems($page: Int, $search: String) {
@@ -70,9 +71,17 @@ export default function MarketList() {
     <s.Wrapper>
       <s.TitleWrapper>
         <s.Title>스토어</s.Title>
-        <s.SearchBar>
-          <SearchDebounce refetch={refetch} onChangeKeyword={onChangeKeyword} />
-        </s.SearchBar>
+        <s.Header>
+          <Link href="/market/new">
+            <s.CreateButton>상품 등록</s.CreateButton>
+          </Link>
+          <s.SearchBar>
+            <SearchDebounce
+              refetch={refetch}
+              onChangeKeyword={onChangeKeyword}
+            />
+          </s.SearchBar>
+        </s.Header>
       </s.TitleWrapper>
       <InfiniteScroll pageStart={0} loadMore={onFetchMore} hasMore={true}>
         <s.ItemsWrapper>

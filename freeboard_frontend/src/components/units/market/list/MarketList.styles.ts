@@ -18,11 +18,39 @@ export const Title = styled.div`
 `;
 
 export const TitleWrapper = styled.div`
+  width: 100%;
   display: flex;
-  justify-content: flex-end;
-  margin-left: 450px;
-  margin-right: 10px;
+  flex-direction: column;
+  align-items: center;
 `;
+
+export const Header = styled.div`
+  margin: 30px 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+`;
+
+export const CreateButton = styled.a`
+  width: 100px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f7f7f7;
+  border: 1px solid #7a583a;
+  font-weight: 500;
+  font-size: 18px;
+
+  cursor: pointer;
+  :hover {
+    background-color: #7a583a;
+    color: white;
+  }
+`;
+
 export const SearchBar = styled.div`
   margin-left: 250px;
 `;
