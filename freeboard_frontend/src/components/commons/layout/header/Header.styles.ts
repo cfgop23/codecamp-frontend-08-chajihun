@@ -53,3 +53,16 @@ export const Login = styled.div`
     color: skyblue;
   }
 `;
+
+export const LoginItem = styled.div`
+  font-size: 14px;
+  line-height: 100%;
+  font-weight: 500;
+  margin-left: -20px;
+  margin-top: 3px;
+
+  cursor: pointer;
+  :hover {
+    color: #7a583a;
+  }
+`;

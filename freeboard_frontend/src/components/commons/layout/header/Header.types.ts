@@ -5,4 +5,5 @@ export interface ILayoutHeaderUIProps {
   // onClickMenu: (event: MouseEvent<HTMLDivElement>) => void;
   onClickLogin: (event: MouseEvent<HTMLDivElement>) => void;
   onClickLogout: () => void;
+  onClickIsOpen: () => void;
 }

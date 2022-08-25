@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { AiOutlineHeart, AiTwotoneHeart } from "react-icons/ai";
 
 export const Wrapper = styled.div`
   margin: auto;
@@ -111,7 +112,7 @@ export const ButtonWrapper = styled.div`
 `;
 
 export const Button = styled.button`
-  width: 179px;
+  width: 150px;
   height: 52px;
   background: white;
   border: 1px solid gray;
@@ -143,4 +144,40 @@ export const ToList = styled.a`
     background-color: #7a583a;
     color: white;
   }
+`;
+
+export const PickBtn = styled.button`
+  width: 150px;
+  height: 52px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid;
+  font-size: 20px;
+  cursor: pointer;
+  :hover {
+    background-color: #7a583a;
+    color: #fff;
+  }
+`;
+
+export const HeartIconNon = styled(AiOutlineHeart)`
+  font-size: 30px;
+  margin-right: 10px;
+`;
+
+export const HeartIconPick = styled(AiTwotoneHeart)`
+  font-size: 30px;
+  margin-right: 10px;
+  color: #ffe004;
+`;
+
+export const Count = styled.div`
+  margin-left: 5px;
+`;
+
+export const CommentsWrapper = styled.div`
+  display: flex;
+  margin-top: 50px;
 `;

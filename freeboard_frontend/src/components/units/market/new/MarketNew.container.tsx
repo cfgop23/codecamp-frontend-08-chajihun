@@ -3,12 +3,19 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useRouter } from "next/router";
 import { useMutation } from "@apollo/client";
-import { CREATE_USEDITEM, UPLOAD_FILE } from "./MarketNew.queries";
+import {
+  CREATE_USEDITEM,
+  UPDATE_USEDITEM,
+  UPLOAD_FILE,
+} from "./MarketNew.queries";
 import { getErrorMessage } from "../../../../commons/libraries/utils";
-import { FormValue } from "./MarketNew.types";
+import { FormValue, MarketNewProps } from "./MarketNew.types";
 import {
   IMutation,
   IMutationCreateUseditemArgs,
+  IMutationUpdateUseditemArgs,
+  IUpdateUseditemInput,
+  IUseditemAddressInput,
 } from "../../../../commons/types/generated/types";
 import { useRecoilState } from "recoil";
 import { accessTokenState } from "../../../../commons/store";
@@ -35,10 +42,14 @@ const schema = yup.object({
   //     .required("내용을 입력해주세요."),
 });
 
-export default function MarketNew() {
+export default function MarketNew(props: MarketNewProps) {
   const router = useRouter();
   const [accessToken] = useRecoilState(accessTokenState);
   const [contentsError, setContentsError] = useState("");
+  const [zipcode, setZipcode] = useState("");
+  const [address, setAddress] = useState("");
+  const [addressDetail, setAddressDetail] = useState("");
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const [file, setFile] = useState<FileList>();
   const [imageUrls, setImageUrls] = useState<string[]>([]);
 
@@ -47,6 +58,11 @@ export default function MarketNew() {
     Pick<IMutation, "createUseditem">,
     IMutationCreateUseditemArgs
   >(CREATE_USEDITEM);
+
+  const [updateUseditem] = useMutation<
+    Pick<IMutation, "updateUseditem">,
+    IMutationUpdateUseditemArgs
+  >(UPDATE_USEDITEM);
 
   const { register, handleSubmit, formState, trigger, setValue } =
     useForm<FormValue>({
@@ -92,6 +108,11 @@ export default function MarketNew() {
             contents: data.contents,
             price: data.price,
             images: url,
+            useditemAddress: {
+              zipcode,
+              address,
+              addressDetail,
+            },
           },
         },
       });
@@ -101,6 +122,28 @@ export default function MarketNew() {
     } catch (error) {
       getErrorMessage(error);
     }
+  };
+
+  const onChangeAddressDetail = (event: ChangeEvent<HTMLInputElement>) => {
+    setAddressDetail(event.target.value);
+  };
+
+  const onClickAddressSearch = () => {
+    setIsModalVisible(true);
+  };
+
+  const onCompleteAddressSearch = (data: any) => {
+    setZipcode(data.zonecode);
+    setAddress(data.address);
+    setIsModalVisible(false);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
   };
 
   const onChangeFile = (event: ChangeEvent<HTMLInputElement>) => {
@@ -123,16 +166,60 @@ export default function MarketNew() {
     }
   };
 
+  const onClickUpdate: SubmitHandler<FormValue> = async (data) => {
+    const updateUseditemInput: IUpdateUseditemInput = {};
+    if (data.name) updateUseditemInput.name = data.name;
+    if (data.remarks) updateUseditemInput.remarks = data.remarks;
+    if (data.price) updateUseditemInput.price = data.price;
+    if (data.contents) updateUseditemInput.contents = data.contents;
+
+    const useditemAddressInput: IUseditemAddressInput = {};
+    if (zipcode) useditemAddressInput.zipcode = zipcode;
+    if (address) useditemAddressInput.address = address;
+    if (addressDetail) useditemAddressInput.addressDetail = addressDetail;
+    if (useditemAddressInput)
+      updateUseditemInput.useditemAddress = { ...useditemAddressInput };
+
+    if (updateUseditemInput) {
+      try {
+        const result = await updateUseditem({
+          variables: {
+            updateUseditemInput,
+            useditemId: String(router.query.marketId),
+          },
+        });
+        console.log(result);
+        await router.push(`/market/${result.data?.updateUseditem._id}`);
+        alert("상품수정이 완료되었습니다.");
+        location.reload();
+      } catch (error) {
+        getErrorMessage(error);
+      }
+    }
+  };
+
   return (
     <MarketNewUI
       register={register}
       handleSubmit={handleSubmit}
       formState={formState}
       onClickCreate={onClickCreate}
+      onClickUpdate={onClickUpdate}
       onChangeContents={onChangeContents}
+      onChangeAddressDetail={onChangeAddressDetail}
+      onClickAddressSearch={onClickAddressSearch}
+      onCompleteAddressSearch={onCompleteAddressSearch}
       onChangeFile={onChangeFile}
+      handleOk={handleOk}
+      handleCancel={handleCancel}
+      zipcode={zipcode}
+      address={address}
+      addressDetail={addressDetail}
+      isModalVisible={isModalVisible}
       contentsError={contentsError}
       imageUrls={imageUrls}
+      isEdit={props.isEdit}
+      data={props.data}
       setFile={setFile}
       setImageUrls={setImageUrls}
     />

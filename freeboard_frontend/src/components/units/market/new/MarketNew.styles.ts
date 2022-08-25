@@ -1,8 +1,11 @@
 import styled from "@emotion/styled";
+import { Modal } from "antd";
 
 interface ButtonStyledProps {
   isActive: boolean;
 }
+
+export const AddressModal = styled(Modal)``;
 
 export const Form = styled.form`
   margin: auto;
@@ -26,6 +29,7 @@ export const InputWrapper = styled.div`
 
 export const contentsEditor = styled.div`
   width: 100%;
+  height: 300px;
   margin-bottom: 55px;
 `;
 
@@ -70,4 +74,65 @@ export const ImgButton = styled.div`
     background-color: #7a583a;
     color: white;
   }
+`;
+
+export const AddressContainer = styled.div`
+  margin: 20px 0;
+  display: flex;
+  align-items: center;
+`;
+
+export const MapWrapper = styled.div`
+  width: 500px;
+  height: 250px;
+  background-color: #999;
+`;
+
+export const AddressWrapper = styled.div`
+  width: 100%;
+  height: 250px;
+  margin-left: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+`;
+
+export const AddBtnWrapper = styled.div`
+  width: 100%;
+  display: flex;
+`;
+
+export const InputZipcode = styled.input`
+  width: 77px;
+  height: 52px;
+  border: 1px solid #bdbdbd;
+  margin-right: 15px;
+  padding: 15px;
+`;
+
+export const AddressBtn = styled.div`
+  width: 124px;
+  height: 51px;
+  background-color: #000;
+  color: #fff;
+  font-weight: 500;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+`;
+
+export const InputCreate = styled.input`
+  width: 100%;
+  height: 56px;
+  font-weight: 400;
+  font-size: 15px;
+  ::placeholder {
+    color: #a9a9a9;
+  }
+  border: none;
+  padding: 20px;
+  background-color: #e9e9e9;
 `;

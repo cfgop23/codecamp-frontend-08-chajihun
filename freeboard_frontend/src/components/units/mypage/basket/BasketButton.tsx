@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { IUseditem } from "../../../../commons/types/generated/types";
 
 const Button = styled.button`
-  width: 179px;
+  width: 150px;
   height: 52px;
   background: white;
   border: 1px solid gray;

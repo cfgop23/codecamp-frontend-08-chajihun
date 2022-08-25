@@ -22,3 +22,13 @@ export const isActiveState = atom({
   key: "isActiveState",
   default: false,
 });
+
+export const todayState = atom({
+  key: "todayState",
+  default: [],
+});
+
+export const isOpenState = atom({
+  key: "isOpenState",
+  default: false,
+});

@@ -1,9 +1,13 @@
 import { useRouter } from "next/router";
 import { MouseEvent } from "react";
+import { useRecoilState } from "recoil";
+import { isOpenState } from "../../../../commons/store";
 import LayoutHeaderUI from "./Header.presenter";
 
 export default function LayoutHeader() {
   const router = useRouter();
+
+  const [, setIsOpen] = useRecoilState(isOpenState);
 
   const onClickToHome = async () => {
     await router.push("/");
@@ -25,10 +29,15 @@ export default function LayoutHeader() {
     location.reload();
   };
 
+  const onClickIsOpen = () => {
+    setIsOpen(true);
+  };
+
   return (
     <LayoutHeaderUI
       onClickToHome={onClickToHome}
       // onClickMenu={onClickMenu}
+      onClickIsOpen={onClickIsOpen}
       onClickLogin={onClickLogin}
       onClickLogout={onClickLogout}
     />
